@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melanie Owubokiri — Senior UX Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1916;
+      --ink-muted: #6b6a65;
+      --ink-faint: #b0aea8;
+      --surface: #f5f3ef;
+      --surface-alt: #edeae4;
+      --accent: #1a1916;
+      --line: #d8d5cf;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: var(--surface);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-color: var(--line); }
+
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      padding: 80px 48px 80px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--line);
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 32px;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(44px, 5vw, 68px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 32px;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--ink-muted);
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      max-width: 420px;
+      line-height: 1.75;
+      margin-bottom: 48px;
+    }
+
+    .hero-desc strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--ink);
+      color: var(--surface);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border: 1px solid var(--ink);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .btn-secondary {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-secondary:hover { color: var(--ink); border-color: var(--ink); }
+
+    .hero-right {
+      padding: 80px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-bottom: 48px;
+    }
+
+    .stat {
+      background: var(--surface);
+      padding: 28px 24px;
+    }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 36px;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-note {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-faint);
+      line-height: 1.7;
+      border-left: 2px solid var(--line);
+      padding-left: 16px;
+    }
+
+    /* SECTION BASE */
+    section {
+      padding: 100px 48px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 48px;
+    }
+
+    /* WORK */
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .work-card {
+      background: var(--surface);
+      padding: 40px;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .work-card:hover { background: var(--surface-alt); }
+
+    .work-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .work-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      border: 1px solid var(--line);
+      padding: 3px 8px;
+    }
+
+    .tag.nda {
+      color: var(--ink-faint);
+      border-color: var(--line);
+    }
+
+    .work-arrow {
+      font-size: 18px;
+      color: var(--ink-faint);
+      flex-shrink: 0;
+      transition: transform 0.2s, color 0.2s;
+    }
+    .work-card:hover .work-arrow { transform: translate(3px, -3px); color: var(--ink); }
+
+    .work-title {
+      font-family: var(--serif);
+      font-size: 24px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .work-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+
+    .work-metric {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: 0.03em;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 80px;
+    }
+
+    .about-body {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.8;
+    }
+
+    .about-body strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .about-sidebar {}
+
+    .skills-group {
+      margin-bottom: 32px;
+    }
+
+    .skills-group-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+    }
+
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .skills-list li {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-muted);
+    }
+
+    /* CONTACT */
+    .contact-inner {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .contact-heading {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.1;
+      max-width: 480px;
+    }
+
+    .contact-heading em { font-style: italic; color: var(--ink-muted); }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-end;
+    }
+
+    .contact-link {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--ink); }
+
+    /* FOOTER */
+    footer {
+      padding: 24px 48px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--ink-faint);
+    }
+
+    .footer-location {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--ink-faint);
+    }
+
+    /* ANIMATIONS */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 20px; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 60px 24px 40px; border-right: none; border-bottom: 1px solid var(--line); }
+      .hero-right { padding: 40px 24px 60px; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+
+      section { padding: 60px 24px; }
+      .work-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-inner { flex-direction: column; align-items: flex-start; }
+      .contact-links { align-items: flex-start; }
+      footer { padding: 20px 24px; flex-direction: column; gap: 8px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="/" class="nav-name">Melanie Owubokiri</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" style="border-top: none; padding: 0;">
+    <div class="hero-left">
+      <p class="hero-tag">Senior UX Designer — Auckland, NZ</p>
+      <h1 class="hero-name">
+        Design that<br>
+        <em>scales.</em>
+      </h1>
+      <p class="hero-desc">
+        I build <strong>design systems, AI-augmented workflows,</strong> and scalable product infrastructure for SaaS teams. I work at the intersection of craft and engineering — where systems thinking meets real user problems.
+      </p>
+      <div class="hero-cta">
+        <a href="#work" class="btn-primary">View work ↓</a>
+        <a href="mailto:melanie_lacerda@hotmail.com" class="btn-secondary">Get in touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">7</div>
+          <div class="stat-label">Products unified in one design system</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4→1</div>
+          <div class="stat-label">Libraries consolidated</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">88%</div>
+          <div class="stat-label">Faster component migration with AI</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">17k</div>
+          <div class="stat-label">Variables migrated in a single day</div>
+        </div>
+      </div>
+      <p class="hero-note">
+        Currently: Design System Lead at Pushpay — bridging Product, UX, and Engineering across NZ &amp; US markets.
+      </p>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <p class="section-label">Selected work</p>
+    <div class="work-grid">
+
+      <a href="case-staq.html" class="work-card fade-up">
+        <div class="work-card-top">
+          <div class="work-tags">
+            <span class="tag">Design Systems</span>
+            <span class="tag nda">NDA · Pushpay</span>
+          </div>
+          <span class="work-arrow">↗</span>
+        </div>
+        <h2 class="work-title">Unified Ecosystem: Staq Modernisation</h2>
+        <p class="work-desc">Consolidated 7 products and 4 libraries into one multi-mode design system. Eliminated from-scratch workflows for every new product launch.</p>
+        <p class="work-metric">4 libraries → 1 · 10+ languages · 13 designers</p>
+      </a>
+
+      <a href="case-ai.html" class="work-card fade-up">
+        <div class="work-card-top">
+          <div class="work-tags">
+            <span class="tag">AI Workflows</span>
+            <span class="tag">Systems</span>
+          </div>
+          <span class="work-arrow">↗</span>
+        </div>
+        <h2 class="work-title">AI as a Design System Force Multiplier</h2>
+        <p class="work-desc">Built an AI-augmented workflow using Claude + Figma MCP to automate documentation, migration, auditing, and component build — without losing design judgment.</p>
+        <p class="work-metric">88% faster migration · 92% faster docs · 17k variables in one day</p>
+      </a>
+
+      <a href="case-donor.html" class="work-card fade-up">
+        <div class="work-card-top">
+          <div class="work-tags">
+            <span class="tag">Product UX</span>
+            <span class="tag nda">NDA · Pushpay</span>
+          </div>
+          <span class="work-arrow">↗</span>
+        </div>
+        <h2 class="work-title">Product Reskin & User Advocacy: Donor Portal</h2>
+        <p class="work-desc">Led UX modernisation during a high-stakes platform migration. Identified and advocated for critical feature gaps that were initially out of scope.</p>
+        <p class="work-metric">User base migrated without sacrificing usability</p>
+      </a>
+
+      <a href="case-giving.html" class="work-card fade-up">
+        <div class="work-card-top">
+          <div class="work-tags">
+            <span class="tag">Product UX</span>
+            <span class="tag">Data</span>
+            <span class="tag nda">NDA · Pushpay</span>
+          </div>
+          <span class="work-arrow">↗</span>
+        </div>
+        <h2 class="work-title">AI for Giving Data</h2>
+        <p class="work-desc">End-to-end UX for AWS QuickSight integration in the Giving platform. Led initial exploration for a conversational AI experience across all Giving data.</p>
+        <p class="work-metric">From concept to launch · future vision handed to next designer</p>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div class="about-body fade-up">
+        <p style="margin-bottom: 24px;">
+          I'm a <strong>systems thinker</strong> first, designer second. My work lives at the structural layer — the foundations that make everything else possible. I'm most useful when the problem is complex, the scale is large, and there's no clear playbook yet.
+        </p>
+        <p style="margin-bottom: 24px;">
+          At Pushpay I've spent three years building the infrastructure that lets 13 designers work across 7 products without stepping on each other. That means <strong>token architecture, AI tooling, accessibility systems,</strong> and bridging the gap between design decisions and engineering reality.
+        </p>
+        <p>
+          I believe senior design skill is no longer just building well. It's <strong>knowing how to make a system scale</strong> — with the right mix of automation, judgment, and taste.
+        </p>
+      </div>
+      <div class="about-sidebar fade-up">
+        <div class="skills-group">
+          <p class="skills-group-label">Design &amp; Systems</p>
+          <ul class="skills-list">
+            <li>Design Systems Architecture</li>
+            <li>Figma Variables &amp; Tokenisation</li>
+            <li>Multi-product Ecosystems</li>
+            <li>WCAG 2.2 Accessibility</li>
+          </ul>
+        </div>
+        <div class="skills-group">
+          <p class="skills-group-label">AI &amp; Tooling</p>
+          <ul class="skills-list">
+            <li>AI-Augmented Workflows</li>
+            <li>Figma Console MCP</li>
+            <li>Design System Assistant MCP</li>
+            <li>Claude · Dovetail · Pendo</li>
+          </ul>
+        </div>
+        <div class="skills-group">
+          <p class="skills-group-label">Process</p>
+          <ul class="skills-list">
+            <li>Stakeholder Management</li>
+            <li>Cross-functional Collaboration</li>
+            <li>Lean UX · Data-driven Design</li>
+            <li>Design Debt Governance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner fade-up">
+      <h2 class="contact-heading">
+        Let's work on something<br><em>worth building.</em>
+      </h2>
+      <div class="contact-links">
+        <a href="mailto:melanie_lacerda@hotmail.com" class="contact-link">melanie_lacerda@hotmail.com ↗</a>
+        <a href="https://www.linkedin.com/in/melanie-owubokiri-519a5b203/" target="_blank" class="contact-link">LinkedIn ↗</a>
+        <a href="#" class="contact-link">Download CV ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-copy">© Melanie Owubokiri 2026</span>
+    <span class="footer-location">Auckland, New Zealand</span>
+  </footer>
+
+  <script>
+    // Nav scroll state
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Fade-up on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
