@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI as a Design System Force Multiplier — Melanie Owubokiri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1916;
+      --ink-muted: #504f4a;
+      --ink-faint: #5a5955;
+      --surface: #f5f3ef;
+      --surface-alt: #edeae4;
+      --line: #d8d5cf;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: var(--surface);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-color: var(--line); }
+
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--ink); }
+
+    /* HERO */
+    .case-hero {
+      padding: 140px 48px 80px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+    }
+
+    .case-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .case-eyebrow span { display: inline-block; width: 24px; height: 1px; background: var(--ink-faint); }
+
+    .case-title {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4.5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+    .case-title em { font-style: italic; color: var(--ink-muted); }
+
+    .case-subtitle {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    .case-meta { display: flex; flex-direction: column; gap: 28px; }
+
+    .meta-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 8px;
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    .meta-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+    }
+
+    /* STATS */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stat-item {
+      background: var(--surface);
+      padding: 28px 32px;
+    }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 36px;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--ink-muted);
+    }
+
+    /* BODY */
+    .case-body { max-width: 1200px; margin: 0 auto; }
+
+    .case-section {
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 80px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      padding-top: 6px;
+      position: sticky;
+      top: 80px;
+      align-self: start;
+    }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-size: 32px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .section-heading em { font-style: italic; color: var(--ink-muted); }
+
+    .section-body {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+    .section-body p { margin-bottom: 20px; }
+    .section-body p:last-child { margin-bottom: 0; }
+    .section-body strong { color: var(--ink); font-weight: 500; }
+
+    .callout {
+      margin: 32px 0;
+      padding: 24px 28px;
+      border-left: 2px solid var(--ink);
+      background: var(--surface-alt);
+    }
+    .callout p {
+      font-size: 17px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.65;
+      margin: 0 !important;
+    }
+
+    /* TOOLKIT */
+    .toolkit {
+      margin-top: 32px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .toolkit-header {
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--line);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .toolkit-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .toolkit-row:last-child { border-bottom: none; }
+
+    .toolkit-tool {
+      padding: 16px 28px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      border-right: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+    }
+
+    .toolkit-role {
+      padding: 16px 28px;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+    }
+
+    /* WORK CATEGORIES */
+    .work-categories {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 32px;
+    }
+
+    .work-category {
+      background: var(--surface);
+      padding: 32px 36px;
+      display: grid;
+      grid-template-columns: 1fr 140px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .work-category-content {}
+
+    .work-category-tag {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 8px;
+    }
+
+    .work-category-title {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .work-category-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    .work-category-metric {
+      text-align: right;
+    }
+
+    .metric-num {
+      font-family: var(--serif);
+      font-size: 28px;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--ink-faint);
+      line-height: 1.4;
+    }
+
+    /* PRINCIPLE BLOCKS */
+    .principles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 32px;
+    }
+
+    .principle {
+      background: var(--surface);
+      padding: 32px;
+    }
+
+    .principle-num {
+      font-family: var(--serif);
+      font-size: 40px;
+      color: var(--ink-faint);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .principle-title {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .principle-body {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    /* PREVIOUSLY IMPOSSIBLE */
+    .impossible-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--line);
+      margin-top: 32px;
+    }
+
+    .impossible-item {
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 20px;
+      align-items: start;
+      background: var(--surface);
+    }
+    .impossible-item:last-child { border-bottom: none; }
+
+    .impossible-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ink);
+      margin-top: 6px;
+    }
+
+    .impossible-content {}
+
+    .impossible-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .impossible-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+
+    .impossible-reason {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      font-style: italic;
+    }
+
+    /* NEXT */
+    .next-case {
+      padding: 80px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .next-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+    }
+
+    .next-title {
+      font-family: var(--serif);
+      font-size: 28px;
+      color: var(--ink);
+      text-decoration: none;
+      display: block;
+      transition: color 0.2s;
+    }
+    .next-title:hover { color: var(--ink-muted); }
+
+    .next-arrow {
+      font-size: 32px;
+      color: var(--ink-faint);
+      text-decoration: none;
+      transition: transform 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .next-arrow:hover { transform: translate(4px, -4px); color: var(--ink); }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .case-hero { grid-template-columns: 1fr; gap: 40px; padding: 120px 24px 60px; }
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .case-section { grid-template-columns: 1fr; gap: 24px; padding: 60px 24px; }
+      .section-label { position: static; }
+      .toolkit-row { grid-template-columns: 1fr; }
+      .toolkit-tool { border-right: none; border-bottom: 1px solid var(--line); }
+      .work-category { grid-template-columns: 1fr; }
+      .work-category-metric { text-align: left; }
+      .principles { grid-template-columns: 1fr; }
+      .next-case { padding: 60px 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="index.html" class="nav-name">Melanie Owubokiri</a>
+    <a href="index.html#work" class="nav-back">← All work</a>
+  </nav>
+
+  <header class="case-hero">
+    <div>
+      <p class="case-eyebrow"><span></span> Pushpay · 2024–Present</p>
+      <h1 class="case-title">
+        Not faster.<br>
+        <em>Finally possible.</em>
+      </h1>
+      <p class="case-subtitle">
+        The real value of AI in design systems isn't speed. It's unlocking work that could never be justified before — audits too large to run, documentation that never got written, debt that accumulated because fixing it properly would take weeks nobody had.
+      </p>
+    </div>
+    <div class="case-meta">
+      <div>
+        <p class="meta-label">My role</p>
+        <p class="meta-value">Senior UX Designer · Design System Lead<br>Sole architect of the AI-augmented DS workflow</p>
+      </div>
+      <div>
+        <p class="meta-label">Tools</p>
+        <div class="meta-tags">
+          <span class="tag">Claude</span>
+          <span class="tag">Figma Console MCP</span>
+          <span class="tag">DS Assistant MCP</span>
+          <span class="tag">Dovetail</span>
+          <span class="tag">Pendo</span>
+          <span class="tag">Atlassian / Jira</span>
+          <span class="tag">Storybook</span>
+          <span class="tag">GitHub</span>
+        </div>
+      </div>
+      <div>
+        <p class="meta-label">Approach</p>
+        <p class="meta-value">Test → validate → run once a human is no longer needed</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item fade-up">
+      <div class="stat-num">88%</div>
+      <div class="stat-label">Faster component migration</div>
+    </div>
+    <div class="stat-item fade-up">
+      <div class="stat-num">92%</div>
+      <div class="stat-label">Faster DS documentation</div>
+    </div>
+    <div class="stat-item fade-up">
+      <div class="stat-num">~95%</div>
+      <div class="stat-label">Faster icon find & replace</div>
+    </div>
+    <div class="stat-item fade-up">
+      <div class="stat-num">17k</div>
+      <div class="stat-label">Variables migrated in one day</div>
+    </div>
+  </div>
+
+  <div class="case-body">
+
+    <!-- THE REAL PROBLEM -->
+    <div class="case-section fade-up">
+      <p class="section-label">The real problem</p>
+      <div class="section-content">
+        <h2 class="section-heading">The work we wanted<br><em>but couldn't justify.</em></h2>
+        <div class="section-body">
+          <p>
+            Every design system accumulates a backlog of work that everyone knows needs doing — but the time required to do it properly can never be justified against the immediate roadmap. So it gets deferred. Workarounds get built instead. The debt grows quietly.
+          </p>
+          <p>
+            At Pushpay, this meant components that shipped without documentation. Variable structures that needed auditing across 17,000 tokens. A library that needed cross-referencing against Storybook and GitHub to find inconsistencies. Work that would take weeks of focused effort from someone who had neither the weeks nor the focus to spare.
+          </p>
+          <div class="callout">
+            <p>"It was quicker to find workarounds than to fix it properly. The time it would take couldn't be justified. So the debt stayed."</p>
+          </div>
+          <p>
+            AI didn't make this work faster. It made it <strong>possible for the first time.</strong> The calculation changed — not because hours got shorter, but because hours got replaced entirely for the parts of the work that were never design decisions in the first place.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE WORKFLOW -->
+    <div class="case-section fade-up">
+      <p class="section-label">The workflow</p>
+      <div class="section-content">
+        <h2 class="section-heading">One workflow.<br><em>Not tool-switching.</em></h2>
+        <div class="section-body">
+          <p>
+            The key wasn't any single tool. It was connecting them — using Claude as the connective tissue across the entire DS workflow so context doesn't get lost between tools and outputs feed directly into the next step.
+          </p>
+        </div>
+
+        <div class="toolkit">
+          <div class="toolkit-header">The stack</div>
+          <div class="toolkit-row">
+            <div class="toolkit-tool">Claude</div>
+            <div class="toolkit-role">Reasoning, auditing, generating documentation, creating Jira tickets from findings, making bulk Figma updates</div>
+          </div>
+          <div class="toolkit-row">
+            <div class="toolkit-tool">Figma Console MCP</div>
+            <div class="toolkit-role">Direct Figma access — read and write variables, audit component usage, push updates without manual work in the UI</div>
+          </div>
+          <div class="toolkit-row">
+            <div class="toolkit-tool">DS Assistant MCP</div>
+            <div class="toolkit-role">Design system knowledge layer — component metadata, token context, usage rules</div>
+          </div>
+          <div class="toolkit-row">
+            <div class="toolkit-tool">Storybook / GitHub</div>
+            <div class="toolkit-role">Engineering source of truth — cross-referenced against Figma to find parity gaps and inconsistencies</div>
+          </div>
+          <div class="toolkit-row">
+            <div class="toolkit-tool">Atlassian / Jira</div>
+            <div class="toolkit-role">Audit findings converted directly into tickets — no manual transcription step</div>
+          </div>
+          <div class="toolkit-row">
+            <div class="toolkit-tool">Dovetail · Pendo</div>
+            <div class="toolkit-role">Research and usage data feeding design decisions — not just design intuition</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREVIOUSLY IMPOSSIBLE -->
+    <div class="case-section fade-up">
+      <p class="section-label">What changed</p>
+      <div class="section-content">
+        <h2 class="section-heading">Work that didn't exist<br><em>before this workflow.</em></h2>
+        <div class="section-body">
+          <p>
+            Some of this work got faster. But the more important category is work that simply wasn't happening — because the cost in time and capacity could never be justified against other priorities.
+          </p>
+        </div>
+
+        <div class="impossible-grid">
+
+          <div class="impossible-item">
+            <div class="impossible-dot"></div>
+            <div class="impossible-content">
+              <p class="impossible-title">Full DS audit — Prism + component library</p>
+              <p class="impossible-desc">A proper audit of scope, descriptions, naming, variable usage, and component health across 500+ variables and components. The scale made it impractical to do manually — it would surface issues faster than they could be resolved. Now it runs on demand, and findings go directly into Jira as actionable tickets.</p>
+              <span class="impossible-reason">Previously: impractical at this scale</span>
+            </div>
+          </div>
+
+          <div class="impossible-item">
+            <div class="impossible-dot"></div>
+            <div class="impossible-content">
+              <p class="impossible-title">Documenting components that shipped without docs</p>
+              <p class="impossible-desc">Components get built under deadline pressure, shipped, and never documented. Retroactively writing structured documentation for every component — usage rules, variants, accessibility notes — was a backlog that kept growing. 60 minutes per component became 5 minutes. The backlog is now clearable.</p>
+              <span class="impossible-reason">Previously: always deferred, never done</span>
+            </div>
+          </div>
+
+          <div class="impossible-item">
+            <div class="impossible-dot"></div>
+            <div class="impossible-content">
+              <p class="impossible-title">17k variable migration in one day</p>
+              <p class="impossible-desc">Updating the entire variable structure — auditing old token usage, replacing hardcoded values, pushing the new semantic architecture across the library. Not 17,000 manual updates. One structured operation, validated, run through Claude directly to Figma. A week of work became a day.</p>
+              <span class="impossible-reason">Previously: would have taken weeks</span>
+            </div>
+          </div>
+
+          <div class="impossible-item">
+            <div class="impossible-dot"></div>
+            <div class="impossible-content">
+              <p class="impossible-title">Cross-channel parity checks</p>
+              <p class="impossible-desc">Comparing what exists in Figma against what's in Storybook against what's in the GitHub repo — finding where they diverge, where components don't match, where the design intent isn't reflected in the built output. This is the kind of audit that might happen once a year if you're lucky. Now it's on-demand.</p>
+              <span class="impossible-reason">Previously: happened rarely, if ever</span>
+            </div>
+          </div>
+
+          <div class="impossible-item">
+            <div class="impossible-dot"></div>
+            <div class="impossible-content">
+              <p class="impossible-title">Icon library rebuild at scale</p>
+              <p class="impossible-desc">100 icons, ~30 seconds each to manually find, configure DS specs, and place correctly. That's ~80 minutes of work that required zero design judgment — just pattern recognition and repetition. With Claude, it's a few minutes. The designer focuses on which icons, not on the placing of them.</p>
+              <span class="impossible-reason">Previously: 80 minutes of non-design work</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- THE PHILOSOPHY -->
+    <div class="case-section fade-up">
+      <p class="section-label">The philosophy</p>
+      <div class="section-content">
+        <h2 class="section-heading">Strategic use.<br><em>Not blind reliance.</em></h2>
+        <div class="section-body">
+          <p>
+            The approach isn't to use AI for everything — it's to use it precisely where human judgment isn't the bottleneck. Test it. Validate it. Run it once a human is no longer needed in the loop.
+          </p>
+          <p>
+            The design decisions still require a designer. What components exist, how they should behave, what the token architecture should mean — these aren't questions AI answers. What AI replaces is the execution overhead: the migration, the documentation formatting, the audit transcription, the repetitive find-and-replace work that fills hours without requiring thought.
+          </p>
+        </div>
+
+        <div class="principles">
+          <div class="principle">
+            <div class="principle-num">01</div>
+            <h4 class="principle-title">Test before trusting</h4>
+            <p class="principle-body">Every workflow gets validated before it runs at scale. A wrong assumption in an automated audit is worse than no audit — it creates false confidence. The human stays in the loop until the output is reliable.</p>
+          </div>
+          <div class="principle">
+            <div class="principle-num">02</div>
+            <h4 class="principle-title">Replace overhead, not judgment</h4>
+            <p class="principle-body">AI handles the parts of the work that were never design work to begin with. The decision of what a component should do is still a designer's decision. The migration of that decision across 17,000 tokens is not.</p>
+          </div>
+          <div class="principle">
+            <div class="principle-num">03</div>
+            <h4 class="principle-title">Connected, not switched</h4>
+            <p class="principle-body">The value isn't in any single tool — it's in keeping context alive across tools. Figma to Storybook to GitHub to Jira without losing the thread. One workflow, not five separate ones.</p>
+          </div>
+          <div class="principle">
+            <div class="principle-num">04</div>
+            <h4 class="principle-title">Make the impossible routine</h4>
+            <p class="principle-body">The best outcome isn't doing existing work faster. It's changing which work is possible — turning the audit that happened once a year into something that runs on demand, and the documentation backlog that was never cleared into something clearable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="next-case">
+    <div>
+      <p class="next-label">Next case study</p>
+      <a href="case-giving.html" class="next-title">AI for Giving Data →</a>
+    </div>
+    <a href="case-giving.html" class="next-arrow">↗</a>
+  </div>
+
+  <footer style="padding: 24px 48px; border-top: 1px solid var(--line); display: flex; justify-content: space-between;">
+    <span style="font-size: 12px; font-weight: 300; color: var(--ink-faint);">© Melanie Owubokiri 2026</span>
+    <a href="index.html" style="font-size: 12px; font-weight: 300; color: var(--ink-faint); text-decoration: none;">Back to home</a>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
