@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Studio & Church App — Melanie Owubokiri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1916;
+      --ink-muted: #504f4a;
+      --ink-faint: #5a5955;
+      --surface: #f5f3ef;
+      --surface-alt: #edeae4;
+      --line: #d8d5cf;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: var(--surface);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-color: var(--line); }
+
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--ink); }
+
+    /* HERO */
+    .case-hero {
+      padding: 140px 48px 80px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+    }
+
+    .case-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .case-eyebrow span {
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--ink-faint);
+    }
+
+    .case-title {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4.5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+
+    .case-title em {
+      font-style: italic;
+      color: var(--ink-muted);
+    }
+
+    .case-subtitle {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    .case-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .meta-block {}
+
+    .meta-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 8px;
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    .meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stat-item {
+      background: var(--surface);
+      padding: 32px 40px;
+    }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 40px;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--ink-muted);
+    }
+
+    /* CONTENT */
+    .case-body {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* SECTION */
+    .case-section {
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 80px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      padding-top: 6px;
+      position: sticky;
+      top: 80px;
+      align-self: start;
+    }
+
+    .section-content {}
+
+    .section-heading {
+      font-family: var(--serif);
+      font-size: 32px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .section-heading em { font-style: italic; color: var(--ink-muted); }
+
+    .section-body {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+
+    .section-body p { margin-bottom: 20px; }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    .section-body strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* CALLOUT */
+    .callout {
+      margin: 32px 0;
+      padding: 24px 28px;
+      border-left: 2px solid var(--ink);
+      background: var(--surface-alt);
+    }
+
+    .callout p {
+      font-size: 17px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.65;
+      margin: 0 !important;
+    }
+
+    /* FEATURE CARDS */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 40px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-number {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      font-weight: 400;
+    }
+
+    .feature-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .feature-collab {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+      margin-top: auto;
+    }
+
+    .feature-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 2px;
+      margin-top: 8px;
+      transition: border-color 0.2s;
+      width: fit-content;
+    }
+    .feature-link:hover { border-color: var(--ink); }
+
+    /* INSIGHT BLOCKS */
+    .insights {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .insight {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .insight-num {
+      font-family: var(--serif);
+      font-size: 28px;
+      line-height: 1;
+      color: var(--ink-faint);
+    }
+
+    .insight-text {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.75;
+      padding-top: 6px;
+    }
+
+    .insight-text strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* OUTCOME */
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 32px;
+    }
+
+    .outcome-item {
+      background: var(--surface);
+      padding: 32px;
+    }
+
+    .outcome-arrow {
+      font-size: 24px;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+    }
+
+    .outcome-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .outcome-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+
+    /* NEXT CASE */
+    .next-case {
+      padding: 80px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .next-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+    }
+
+    .next-title {
+      font-family: var(--serif);
+      font-size: 28px;
+      color: var(--ink);
+      text-decoration: none;
+      display: block;
+      transition: color 0.2s;
+    }
+    .next-title:hover { color: var(--ink-muted); }
+
+    .next-arrow {
+      font-size: 32px;
+      color: var(--ink-faint);
+      text-decoration: none;
+      transition: transform 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .next-arrow:hover { transform: translate(4px, -4px); color: var(--ink); }
+
+    /* FADE */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .case-hero { grid-template-columns: 1fr; gap: 40px; padding: 120px 24px 60px; }
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .case-section { grid-template-columns: 1fr; gap: 24px; padding: 60px 24px; }
+      .section-label { position: static; }
+      .features-grid { grid-template-columns: 1fr; }
+      .outcome-grid { grid-template-columns: 1fr; }
+      .next-case { padding: 60px 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="index.html" class="nav-name">Melanie Owubokiri</a>
+    <a href="index.html#work" class="nav-back">← All work</a>
+  </nav>
+
+  <!-- HERO -->
+  <header class="case-hero">
+    <div>
+      <p class="case-eyebrow"><span></span> App Studio & Church App · Pushpay · 2022–2024</p>
+      <h1 class="case-title">
+        Building in one product.<br>
+        <em>Learning the whole ecosystem.</em>
+      </h1>
+      <p class="case-subtitle">
+        How two years in the most overlooked corner of a SaaS platform became the foundation for everything that came after — including the design system I lead today.
+      </p>
+    </div>
+    <div class="case-meta">
+      <div class="meta-block">
+        <p class="meta-label">My role</p>
+        <p class="meta-value">UX Designer (UX1 → UX2)<br>End-to-end product design, cross-team collaboration, user research advocacy</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Teams collaborated with</p>
+        <p class="meta-value">ChMS · Resi Media · Giving · Engineering (multiple squads)</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">What shipped</p>
+        <div class="meta-tags" style="margin-top: 4px;">
+          <span class="tag">StudioC Integration</span>
+          <span class="tag">Events Enhancement</span>
+          <span class="tag">Resi on Demand</span>
+          <span class="tag">In-App Browser</span>
+          <span class="tag">Watch & Respond</span>
+          <span class="tag">App UI Refresh</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item fade-up">
+      <div class="stat-num">4+</div>
+      <div class="stat-label">Product teams collaborated with</div>
+    </div>
+    <div class="stat-item fade-up">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Features shipped to production</div>
+    </div>
+    <div class="stat-item fade-up">
+      <div class="stat-num">2</div>
+      <div class="stat-label">User types designed for simultaneously</div>
+    </div>
+    <div class="stat-item fade-up">
+      <div class="stat-num">↑DS</div>
+      <div class="stat-label">Work fed directly into design system strategy</div>
+    </div>
+  </div>
+
+  <div class="case-body">
+
+    <!-- THE BEFORE -->
+    <div class="case-section fade-up">
+      <p class="section-label">The starting point</p>
+      <div class="section-content">
+        <h2 class="section-heading">The team everyone<br><em>underestimated.</em></h2>
+        <div class="section-body">
+          <p>
+            App Studio wasn't the glamorous product squad. It was a small team, often overlooked in company-wide conversations, sitting at the intersection of every other product without being fully claimed by any of them.
+          </p>
+          <p>
+            When I joined, end-user knowledge was almost nonexistent. We had reasonable understanding of church admins — the people who <em>built</em> the app — but the congregants actually <strong>using</strong> the Church App were largely a blind spot. No structured research, limited usability data, and a design system that reflected the problem: hardcoded values, components built in isolation, nothing truly reusable.
+          </p>
+          <div class="callout">
+            <p>"We were building products for people we barely knew, using tools that didn't talk to each other, in a team that had to earn its seat at every table."</p>
+          </div>
+          <p>
+            I chose to see this as an opportunity. Being at the edges of the product meant I had to understand <strong>everything</strong> — Giving, ChMS, Resi, the admin experience, the end-user experience. That forced cross-product literacy became the foundation of how I think about design systems today.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESEARCH ADVOCACY -->
+    <div class="case-section fade-up">
+      <p class="section-label">Research foundation</p>
+      <div class="section-content">
+        <h2 class="section-heading">Advocating for the<br><em>people we didn't know.</em></h2>
+        <div class="section-body">
+          <p>
+            One of the first things I pushed for was bringing more end-user focus to App Studio — not just admin knowledge. Pushpay had a UX Research team, and I worked closely with them to advocate for and conduct research that the team hadn't previously prioritised: usability testing, interviews, and synthesis that we could share across the wider UX org.
+          </p>
+          <p>
+            The Church App is where community lives for congregants — <strong>events, groups, giving, media, communication</strong>. These are people building a sense of belonging through a digital product. That context matters enormously for design decisions, and we couldn't make good ones without understanding who we were designing for.
+          </p>
+          <div class="insights">
+            <div class="insight">
+              <div class="insight-num">01</div>
+              <div class="insight-text"><strong>Partnered with the UX Research team</strong> to bring structured end-user research into App Studio — usability testing, interviews, and synthesis that previously hadn't been applied to this product space.</div>
+            </div>
+            <div class="insight">
+              <div class="insight-num">02</div>
+              <div class="insight-text"><strong>Built a clearer picture of the admin/end-user split</strong> — two very different mental models, both living inside the same product ecosystem.</div>
+            </div>
+            <div class="insight">
+              <div class="insight-num">03</div>
+              <div class="insight-text"><strong>Used research findings to shape feature priorities</strong> — not just validate designs after decisions were already made.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="case-section fade-up">
+      <p class="section-label">What shipped</p>
+      <div class="section-content">
+        <h2 class="section-heading">Selected work.<br><em>Every one a collaboration challenge.</em></h2>
+        <div class="section-body">
+          <p>
+            These are the highlights from a broader body of work across two years. Every feature required working across product boundaries — coordinating with teams who had their own roadmaps, their own constraints, and their own definitions of "done." That's where the real design work happened.
+          </p>
+        </div>
+
+        <div class="features-grid">
+
+          <div class="feature-card">
+            <p class="feature-number">01</p>
+            <h3 class="feature-title">StudioC Integration</h3>
+            <p class="feature-desc">
+              Integrated StudioC's personalisation capabilities into App Studio, giving church admins a new layer of control over their app's content and branding. Required deep collaboration with the StudioC team to understand their model and design a seamless admin experience that didn't feel bolted on.
+            </p>
+            <p class="feature-collab">Collaboration: StudioC (third-party) · App Studio Engineering</p>
+            <a href="https://pushpay.com/integrations/studioc/" target="_blank" class="feature-link">View integration ↗</a>
+          </div>
+
+          <div class="feature-card">
+            <p class="feature-number">02</p>
+            <h3 class="feature-title">Events Enhancement</h3>
+            <p class="feature-desc">
+              Redesigned the Events experience in App Studio and Church App to bring parity with ChMS — the church management system that owned events data. This required ongoing liaison with the ChMS team to ensure that what admins built in ChMS reflected correctly in the app, and that congregants could discover, register for, and engage with events intuitively.
+            </p>
+            <p class="feature-collab">Collaboration: ChMS team · App Studio Engineering · UX Research</p>
+          </div>
+
+          <div class="feature-card">
+            <p class="feature-number">03</p>
+            <h3 class="feature-title">Resi on Demand</h3>
+            <p class="feature-desc">
+              A two-part story: I worked with the Resi team on designing the Resi On Demand product itself — playlists, video browsing, on-demand experience — and separately designed how it integrates into the Church App ecosystem for congregants. Two distinct design challenges, one collaboration across two product teams.
+            </p>
+            <p class="feature-collab">Collaboration: Resi Product & Design · App Studio Engineering</p>
+            <a href="case-resi.html" class="feature-link">Full case study ↗</a>
+          </div>
+
+          <div class="feature-card">
+            <p class="feature-number">04</p>
+            <h3 class="feature-title">App UI Refresh</h3>
+            <p class="feature-desc">
+              A comprehensive visual modernisation of the Church App — the white-label product used by congregants. This wasn't a cosmetic update. It required improving consistency across every surface, addressing years of accumulated design debt, and bringing a level of modernity that strengthened design consistency across the end-user product.
+            </p>
+            <p class="feature-collab">Collaboration: App Studio Engineering · UX Research</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT I LEARNED -->
+    <div class="case-section fade-up">
+      <p class="section-label">The unexpected outcome</p>
+      <div class="section-content">
+        <h2 class="section-heading">The "overlooked" team<br><em>taught me the whole platform.</em></h2>
+        <div class="section-body">
+          <p>
+            Working at the intersection of Giving, ChMS, Resi, and the app layer meant I had to develop fluency across the entire Pushpay portfolio. I couldn't design the Events experience without understanding ChMS. I couldn't design the media experience without understanding Resi. I couldn't design the giving experience without understanding the Donor Portal.
+          </p>
+          <p>
+            That forced breadth is exactly what made me effective when the opportunity came to lead Design System work. <strong>You can't build a system for 7 products if you only understand 1.</strong>
+          </p>
+        </div>
+
+        <div class="outcome-grid">
+          <div class="outcome-item">
+            <div class="outcome-arrow">→</div>
+            <h4 class="outcome-title">Cross-product literacy</h4>
+            <p class="outcome-desc">Deep understanding of how Giving, ChMS, Resi, and Apps intersect — now essential to DS leadership decisions.</p>
+          </div>
+          <div class="outcome-item">
+            <div class="outcome-arrow">→</div>
+            <h4 class="outcome-title">End-user research practice</h4>
+            <p class="outcome-desc">Built from scratch within App Studio — laying groundwork for data-driven design that continues across the UX org.</p>
+          </div>
+          <div class="outcome-item">
+            <div class="outcome-arrow">→</div>
+            <h4 class="outcome-title">DS debt identified early</h4>
+            <p class="outcome-desc">Hardcoded values and siloed components encountered here directly shaped the Staq Modernisation brief — and the atom-level work underway today.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IN PROGRESS -->
+    <div class="case-section fade-up">
+      <p class="section-label">Currently in progress</p>
+      <div class="section-content">
+        <h2 class="section-heading">The debt we found then.<br><em>The work we're fixing now.</em></h2>
+        <div class="section-body">
+          <p>
+            The inconsistencies I encountered in App Studio — hardcoded values, components built in isolation, no shared token architecture — weren't unique to that team. They were systemic.
+          </p>
+          <p>
+            As Design System Lead, I'm now leading an atom-level audit across the full UI library and component library (Storybook). The premise: <strong>get the atoms right, and every molecule and organism built on top of them benefits automatically</strong> — without blocking other teams or creating dependencies.
+          </p>
+          <p>
+            I'm using Claude to run cross-channel audits between Figma, Storybook, and GitHub — identifying variable mismatches, hardcoded values, and component health — then generating Jira tickets directly from the findings. Work that would take weeks of manual audit now surfaces in hours.
+          </p>
+          <div class="callout">
+            <p>"By working hard on atoms today, any molecules and organisms built by other teams will benefit seamlessly — without us becoming a blocker."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NEXT CASE -->
+  <div class="next-case">
+    <div>
+      <p class="next-label">Next case study</p>
+      <a href="case-staq.html" class="next-title">Unified Ecosystem: Staq Modernisation →</a>
+    </div>
+    <a href="case-staq.html" class="next-arrow">↗</a>
+  </div>
+
+  <footer style="padding: 24px 48px; border-top: 1px solid var(--line); display: flex; justify-content: space-between;">
+    <span style="font-size: 12px; font-weight: 300; color: var(--ink-faint);">© Melanie Owubokiri 2026</span>
+    <a href="index.html" style="font-size: 12px; font-weight: 300; color: var(--ink-faint); text-decoration: none;">Back to home</a>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
