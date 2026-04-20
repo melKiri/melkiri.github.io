@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resi On Demand — Melanie Owubokiri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1916;
+      --ink-muted: #504f4a;
+      --ink-faint: #5a5955;
+      --surface: #f5f3ef;
+      --surface-alt: #edeae4;
+      --line: #d8d5cf;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: var(--surface);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-color: var(--line); }
+
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--ink); }
+
+    .case-hero {
+      padding: 140px 48px 80px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+    }
+
+    .case-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .case-eyebrow span { display: inline-block; width: 24px; height: 1px; background: var(--ink-faint); }
+
+    .case-title {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4.5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+    .case-title em { font-style: italic; color: var(--ink-muted); }
+
+    .case-subtitle {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    .case-meta { display: flex; flex-direction: column; gap: 32px; }
+
+    .meta-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 8px;
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    .meta-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+    }
+
+    /* SURFACES BAR — three surfaces, horizontal */
+    .surfaces-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .surface-item {
+      background: var(--surface);
+      padding: 32px 40px;
+    }
+
+    .surface-num {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 10px;
+    }
+
+    .surface-name {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .surface-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    /* CONTENT */
+    .case-body { max-width: 1200px; margin: 0 auto; }
+
+    .case-section {
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 80px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      padding-top: 6px;
+      position: sticky;
+      top: 80px;
+      align-self: start;
+    }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-size: 32px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .section-heading em { font-style: italic; color: var(--ink-muted); }
+
+    .section-body {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+    .section-body p { margin-bottom: 20px; }
+    .section-body p:last-child { margin-bottom: 0; }
+    .section-body strong { color: var(--ink); font-weight: 500; }
+
+    .callout {
+      margin: 32px 0;
+      padding: 24px 28px;
+      border-left: 2px solid var(--ink);
+      background: var(--surface-alt);
+    }
+    .callout p {
+      font-size: 17px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.65;
+      margin: 0 !important;
+    }
+
+    /* THREE COLUMN BREAKDOWN */
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 40px;
+    }
+
+    .breakdown-item {
+      background: var(--surface);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .breakdown-tag {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .breakdown-title {
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .breakdown-body {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .breakdown-details {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 8px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .breakdown-details li {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      padding-left: 12px;
+      position: relative;
+    }
+    .breakdown-details li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--ink-faint);
+    }
+
+    /* PLACEHOLDER */
+    .placeholder {
+      margin-top: 32px;
+      padding: 32px;
+      border: 1px dashed var(--line);
+      background: var(--surface-alt);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .placeholder-icon {
+      font-size: 24px;
+      color: var(--ink-faint);
+      flex-shrink: 0;
+    }
+
+    .placeholder-text {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-faint);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* CHALLENGE / INSIGHT LIST */
+    .insight-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .insight-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .insight-num {
+      font-family: var(--serif);
+      font-size: 28px;
+      line-height: 1;
+      color: var(--ink-faint);
+    }
+
+    .insight-text {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.75;
+      padding-top: 6px;
+    }
+    .insight-text strong { color: var(--ink); font-weight: 500; }
+
+    /* EXTERNAL LINK */
+    .external-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 32px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 3px;
+      transition: border-color 0.2s;
+    }
+    .external-link:hover { border-color: var(--ink); }
+
+    /* NEXT */
+    .next-case {
+      padding: 80px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .next-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+    }
+
+    .next-title {
+      font-family: var(--serif);
+      font-size: 28px;
+      color: var(--ink);
+      text-decoration: none;
+      display: block;
+      transition: color 0.2s;
+    }
+    .next-title:hover { color: var(--ink-muted); }
+
+    .next-arrow {
+      font-size: 32px;
+      color: var(--ink-faint);
+      text-decoration: none;
+      transition: transform 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .next-arrow:hover { transform: translate(4px, -4px); color: var(--ink); }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .case-hero { grid-template-columns: 1fr; gap: 40px; padding: 120px 24px 60px; }
+      .surfaces-bar { grid-template-columns: 1fr; }
+      .case-section { grid-template-columns: 1fr; gap: 24px; padding: 60px 24px; }
+      .section-label { position: static; }
+      .breakdown-grid { grid-template-columns: 1fr; }
+      .next-case { padding: 60px 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="index.html" class="nav-name">Melanie Owubokiri</a>
+    <a href="index.html#work" class="nav-back">← All work</a>
+  </nav>
+
+  <header class="case-hero">
+    <div>
+      <p class="case-eyebrow"><span></span> Resi × Pushpay · 2023–2024</p>
+      <h1 class="case-title">
+        One experience.<br>
+        <em>Three surfaces.</em>
+      </h1>
+      <p class="case-subtitle">
+        Designing Resi On Demand end-to-end — from the viewing experience itself, to how it lives inside the Church App, to how admins configure it in App Studio. One product. Three audiences. No seams.
+      </p>
+    </div>
+    <div class="case-meta">
+      <div>
+        <p class="meta-label">My role</p>
+        <p class="meta-value">UX Designer (UX2)<br>Sole designer across end-user experience, Church App integration, and App Studio admin configuration</p>
+      </div>
+      <div>
+        <p class="meta-label">Teams collaborated with</p>
+        <p class="meta-value">Resi Product & Engineering · App Studio Engineering · Church App team</p>
+      </div>
+      <div>
+        <p class="meta-label">Surfaces designed</p>
+        <div class="meta-tags">
+          <span class="tag">Resi On Demand (end-user)</span>
+          <span class="tag">Church App integration</span>
+          <span class="tag">App Studio (admin)</span>
+        </div>
+      </div>
+      <div>
+        <p class="meta-label">Status</p>
+        <p class="meta-value">Shipped · Live</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- THREE SURFACES -->
+  <div class="surfaces-bar">
+    <div class="surface-item fade-up">
+      <p class="surface-num">Surface 01</p>
+      <h3 class="surface-name">Resi On Demand</h3>
+      <p class="surface-desc">The viewing experience — browsing, playlists, on-demand content for end users (congregants)</p>
+    </div>
+    <div class="surface-item fade-up">
+      <p class="surface-num">Surface 02</p>
+      <h3 class="surface-name">Church App</h3>
+      <p class="surface-desc">How Resi On Demand is embedded and experienced within the Church App ecosystem</p>
+    </div>
+    <div class="surface-item fade-up">
+      <p class="surface-num">Surface 03</p>
+      <h3 class="surface-name">App Studio</h3>
+      <p class="surface-desc">How church admins configure, connect, and embed the Resi media library into their app</p>
+    </div>
+  </div>
+
+  <div class="case-body">
+
+    <!-- CONTEXT -->
+    <div class="case-section fade-up">
+      <p class="section-label">The brief</p>
+      <div class="section-content">
+        <h2 class="section-heading">A Netflix-style media library.<br><em>Built for the church context.</em></h2>
+        <div class="section-body">
+          <p>
+            Resi is Pushpay's live streaming and video product — a separate platform with its own team, design system, and roadmap. The opportunity was to build an on-demand content experience that would let churches offer their congregants a branded, distraction-free place to watch past services, sermon series, and media content.
+          </p>
+          <p>
+            The challenge wasn't just building a media player. It was designing an experience that felt <strong>native across three very different surfaces</strong> — a standalone product (Resi On Demand / Media Sites), an embedded feature inside the Church App, and an admin configuration flow inside App Studio.
+          </p>
+          <div class="callout">
+            <p>"No redirects. No competing algorithms. No distractions. One destination where your audience can watch live and explore past content — all in one place."</p>
+          </div>
+          <p>
+            I was the sole designer on the end-user experience, working directly with the Resi product and engineering team — while simultaneously maintaining my work in the App Studio and Church App space.
+          </p>
+        </div>
+        <a href="https://resi.io/resi-on-demand/" target="_blank" class="external-link">View Resi On Demand live ↗</a>
+      </div>
+    </div>
+
+    <!-- THREE SURFACES BREAKDOWN -->
+    <div class="case-section fade-up">
+      <p class="section-label">The work</p>
+      <div class="section-content">
+        <h2 class="section-heading">Same product.<br><em>Three design problems.</em></h2>
+        <div class="section-body">
+          <p>
+            Each surface had a different user, a different context, and a different definition of success. The design had to work for all three without compromising any of them.
+          </p>
+        </div>
+
+        <div class="breakdown-grid">
+
+          <div class="breakdown-item">
+            <p class="breakdown-tag">Surface 01 · End user</p>
+            <h3 class="breakdown-title">Resi On Demand</h3>
+            <p class="breakdown-body">
+              The core viewing experience for congregants. A branded, searchable content library where live streams auto-save and on-demand content is organised into playlists and series. Designed to feel familiar — like a streaming service — while remaining distraction-free and entirely owned by the church.
+            </p>
+            <ul class="breakdown-details">
+              <li>Browse, discover, and watch on-demand content</li>
+              <li>Playlist and series organisation</li>
+              <li>Live + on-demand unified in one destination</li>
+              <li>Branded experience — no third-party interference</li>
+            </ul>
+          </div>
+
+          <div class="breakdown-item">
+            <p class="breakdown-tag">Surface 02 · Church App</p>
+            <h3 class="breakdown-title">In-app integration</h3>
+            <p class="breakdown-body">
+              How Resi On Demand lives inside the Church App — the white-label app used by congregants. The challenge here was integration without the seam showing. Content needed to feel native to the app, not like a webview dropped in. Congregants shouldn't feel like they've left the app to watch a video.
+            </p>
+            <ul class="breakdown-details">
+              <li>Seamless embed within Church App navigation</li>
+              <li>Consistent visual language across both products</li>
+              <li>Minimal friction from app to content</li>
+            </ul>
+          </div>
+
+          <div class="breakdown-item">
+            <p class="breakdown-tag">Surface 03 · Admin</p>
+            <h3 class="breakdown-title">App Studio config</h3>
+            <p class="breakdown-body">
+              The admin-facing configuration flow in App Studio — how church admins connect their Resi account, set up their media library, and embed it into their app. Required close collaboration with the App Studio engineering team to design a setup flow that was clear enough for non-technical admins to complete without support.
+            </p>
+            <ul class="breakdown-details">
+              <li>Resi account connection and authentication</li>
+              <li>Media library configuration</li>
+              <li>Embed and publish flow</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="placeholder">
+          <div class="placeholder-icon">◻</div>
+          <p class="placeholder-text">
+            <strong>Coming soon:</strong> Screenshots and process work from each surface — wireframes, key decisions, and before/after comparisons. Check documentation for supporting visuals.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESIGN CHALLENGES -->
+    <div class="case-section fade-up">
+      <p class="section-label">Design challenges</p>
+      <div class="section-content">
+        <h2 class="section-heading">Working across<br><em>two product systems.</em></h2>
+        <div class="section-body">
+          <p>
+            Designing across Resi and Pushpay meant navigating two different design systems, two engineering teams, and two different product roadmaps — simultaneously. Every decision had downstream implications on at least two surfaces.
+          </p>
+        </div>
+
+        <div class="insight-list">
+          <div class="insight-item">
+            <div class="insight-num">01</div>
+            <div class="insight-text"><strong>Two design systems, one coherent experience.</strong> Resi had its own visual language. The Church App had Prism. The integration had to feel native in both without creating a third, undefined aesthetic.</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-num">02</div>
+            <div class="insight-text"><strong>Different users, shared content.</strong> Admins configure what congregants see. Every admin decision has a direct end-user consequence — which meant designing both sides with that dependency always in mind.</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-num">03</div>
+            <div class="insight-text"><strong>Familiar but not generic.</strong> The "Netflix-style" reference set expectations. The design needed to feel intuitive — leveraging familiar patterns — without looking like it was just copying a consumer streaming app for a church context.</div>
+          </div>
+        </div>
+
+        <div class="placeholder">
+          <div class="placeholder-icon">◻</div>
+          <p class="placeholder-text">
+            <strong>To add:</strong> Specific pushback moments or key decisions from documentation — where you advocated for a different direction and why.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTCOME -->
+    <div class="case-section fade-up">
+      <p class="section-label">What shipped</p>
+      <div class="section-content">
+        <h2 class="section-heading">Live, branded,<br><em>distraction-free.</em></h2>
+        <div class="section-body">
+          <p>
+            Resi On Demand shipped as a fully branded, searchable content destination — unifying live and on-demand content in one place. Churches could finally offer their congregants a streaming experience they owned entirely, without competing algorithms or third-party interference pulling viewers away.
+          </p>
+          <p>
+            The Church App integration brought that experience directly into the app congregants already used for giving, groups, and events — making media consumption part of the existing community experience rather than a separate destination.
+          </p>
+          <p>
+            The App Studio configuration flow gave admins a clear, self-serve path to set up and embed their media library — reducing dependency on technical support for what should be a straightforward task.
+          </p>
+        </div>
+        <a href="https://resi.io/resi-on-demand/" target="_blank" class="external-link">View the live product ↗</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NEXT -->
+  <div class="next-case">
+    <div>
+      <p class="next-label">Next case study</p>
+      <a href="case-staq.html" class="next-title">Unified Ecosystem: Staq Modernisation →</a>
+    </div>
+    <a href="case-staq.html" class="next-arrow">↗</a>
+  </div>
+
+  <footer style="padding: 24px 48px; border-top: 1px solid var(--line); display: flex; justify-content: space-between;">
+    <span style="font-size: 12px; font-weight: 300; color: var(--ink-faint);">© Melanie Owubokiri 2026</span>
+    <a href="index.html" style="font-size: 12px; font-weight: 300; color: var(--ink-faint); text-decoration: none;">Back to home</a>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
