@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI for Giving Data — Melanie Owubokiri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1916;
+      --ink-muted: #504f4a;
+      --ink-faint: #5a5955;
+      --surface: #f5f3ef;
+      --surface-alt: #edeae4;
+      --line: #d8d5cf;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: var(--surface);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-color: var(--line); }
+
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--ink); }
+
+    .case-hero {
+      padding: 140px 48px 80px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+    }
+
+    .case-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .case-eyebrow span { display: inline-block; width: 24px; height: 1px; background: var(--ink-faint); }
+
+    .case-title {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4.5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+    .case-title em { font-style: italic; color: var(--ink-muted); }
+
+    .case-subtitle {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    .case-meta { display: flex; flex-direction: column; gap: 28px; }
+
+    .meta-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 8px;
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    .meta-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+    }
+
+    /* TWO PHASES BAR */
+    .phases-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .phase-item {
+      background: var(--surface);
+      padding: 32px 40px;
+    }
+
+    .phase-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 10px;
+    }
+
+    .phase-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .phase-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    .phase-status {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      border: 1px solid var(--line);
+      padding: 3px 8px;
+    }
+
+    /* BODY */
+    .case-body { max-width: 1200px; margin: 0 auto; }
+
+    .case-section {
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 80px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      padding-top: 6px;
+      position: sticky;
+      top: 80px;
+      align-self: start;
+    }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-size: 32px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .section-heading em { font-style: italic; color: var(--ink-muted); }
+
+    .section-body {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+    .section-body p { margin-bottom: 20px; }
+    .section-body p:last-child { margin-bottom: 0; }
+    .section-body strong { color: var(--ink); font-weight: 500; }
+
+    .callout {
+      margin: 32px 0;
+      padding: 24px 28px;
+      border-left: 2px solid var(--ink);
+      background: var(--surface-alt);
+    }
+    .callout p {
+      font-size: 17px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.65;
+      margin: 0 !important;
+    }
+
+    /* DATA LAYER TABLE */
+    .data-table {
+      margin-top: 32px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .data-table-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface-alt);
+    }
+
+    .data-table-header span {
+      padding: 12px 20px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      border-right: 1px solid var(--line);
+    }
+    .data-table-header span:last-child { border-right: none; }
+
+    .data-table-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .data-table-row:last-child { border-bottom: none; }
+
+    .data-table-cell {
+      padding: 16px 20px;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      border-right: 1px solid var(--line);
+      line-height: 1.5;
+    }
+    .data-table-cell:first-child { font-weight: 500; color: var(--ink); }
+    .data-table-cell:last-child { border-right: none; }
+
+    /* INSIGHT LIST */
+    .insight-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .insight-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .insight-num {
+      font-family: var(--serif);
+      font-size: 28px;
+      line-height: 1;
+      color: var(--ink-faint);
+    }
+
+    .insight-text {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.75;
+      padding-top: 6px;
+    }
+    .insight-text strong { color: var(--ink); font-weight: 500; }
+
+    /* FUTURE VISION FEATURES */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 32px;
+    }
+
+    .feature-item {
+      background: var(--surface);
+      padding: 28px;
+    }
+
+    .feature-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .feature-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    /* KEY LEARNING */
+    .learning-block {
+      margin-top: 32px;
+      padding: 40px;
+      border: 1px solid var(--ink);
+      background: var(--surface);
+    }
+
+    .learning-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 16px;
+    }
+
+    .learning-heading {
+      font-family: var(--serif);
+      font-size: 26px;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .learning-heading em { font-style: italic; color: var(--ink-muted); }
+
+    .learning-body {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.75;
+      max-width: 560px;
+    }
+    .learning-body strong { color: var(--ink); font-weight: 500; }
+
+    /* PLACEHOLDER */
+    .placeholder {
+      margin-top: 32px;
+      padding: 28px 32px;
+      border: 1px dashed var(--line);
+      background: var(--surface-alt);
+    }
+    .placeholder p {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-faint);
+      font-style: italic;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* HANDOFF NOTE */
+    .handoff-note {
+      margin-top: 32px;
+      padding: 24px 28px;
+      border-left: 2px solid var(--line);
+      background: var(--surface-alt);
+    }
+    .handoff-note p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+    .handoff-note strong { color: var(--ink); font-weight: 500; }
+
+    /* NEXT */
+    .next-case {
+      padding: 80px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .next-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+    }
+
+    .next-title {
+      font-family: var(--serif);
+      font-size: 28px;
+      color: var(--ink);
+      text-decoration: none;
+      display: block;
+      transition: color 0.2s;
+    }
+    .next-title:hover { color: var(--ink-muted); }
+
+    .next-arrow {
+      font-size: 32px;
+      color: var(--ink-faint);
+      text-decoration: none;
+      transition: transform 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .next-arrow:hover { transform: translate(4px, -4px); color: var(--ink); }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .case-hero { grid-template-columns: 1fr; gap: 40px; padding: 120px 24px 60px; }
+      .phases-bar { grid-template-columns: 1fr; }
+      .case-section { grid-template-columns: 1fr; gap: 24px; padding: 60px 24px; }
+      .section-label { position: static; }
+      .data-table-header, .data-table-row { grid-template-columns: 1fr; }
+      .data-table-cell { border-right: none; border-bottom: 1px solid var(--line); }
+      .features-grid { grid-template-columns: 1fr; }
+      .next-case { padding: 60px 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="index.html" class="nav-name">Melanie Owubokiri</a>
+    <a href="index.html#work" class="nav-back">← All work</a>
+  </nav>
+
+  <header class="case-hero">
+    <div>
+      <p class="case-eyebrow"><span></span> Pushpay · Giving Platform · 2023–2024 · NDA</p>
+      <h1 class="case-title">
+        Making data<br>
+        <em>speak plainly.</em>
+      </h1>
+      <p class="case-subtitle">
+        End-to-end UX for AI-powered giving analytics — from the data layer up. Teaching an AI what church giving data means, designing how administrators query it, and exploring what a truly conversational giving intelligence could become.
+      </p>
+    </div>
+    <div class="case-meta">
+      <div>
+        <p class="meta-label">My role</p>
+        <p class="meta-value">Senior UX Designer<br>End-to-end UX, data taxonomy, user research, future vision design</p>
+      </div>
+      <div>
+        <p class="meta-label">Collaborators</p>
+        <p class="meta-value">Data Engineers · US Stakeholders · UX Research team</p>
+      </div>
+      <div>
+        <p class="meta-label">What I worked on</p>
+        <div class="meta-tags">
+          <span class="tag">AWS QuickSight</span>
+          <span class="tag">Data Taxonomy</span>
+          <span class="tag">User Research</span>
+          <span class="tag">AI UX</span>
+          <span class="tag">Future Vision</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TWO PHASES -->
+  <div class="phases-bar">
+    <div class="phase-item fade-up">
+      <p class="phase-label">Phase 01</p>
+      <h3 class="phase-title">AWS QuickSight integration</h3>
+      <p class="phase-desc">AI-powered giving analytics embedded in the Giving platform — transaction data, recurring schedules, donor insights. Designed end-to-end and launched.</p>
+      <span class="phase-status">Shipped · Live</span>
+    </div>
+    <div class="phase-item fade-up">
+      <p class="phase-label">Phase 02</p>
+      <h3 class="phase-title">"Ask AI" — conversational giving intelligence</h3>
+      <p class="phase-desc">A future-state vision for a Claude-like experience across all Giving data — conversational queries, history, data visualisation, follow-ups. Initial exploration completed before handoff.</p>
+      <span class="phase-status">Handed off · In progress</span>
+    </div>
+  </div>
+
+  <div class="case-body">
+
+    <!-- CONTEXT -->
+    <div class="case-section fade-up">
+      <p class="section-label">The brief</p>
+      <div class="section-content">
+        <h2 class="section-heading">AI that understands<br><em>church giving data.</em></h2>
+        <div class="section-body">
+          <p>
+            Church administrators manage complex giving data — transactions, recurring schedules, lapsed donors, campaign performance, fund allocation. Making sense of that data historically required manual exports, spreadsheet work, or relying on a data team. The opportunity was to put AI-powered analytics directly in the hands of the people who needed it most.
+          </p>
+          <p>
+            The integration used AWS QuickSight to surface giving insights — but before the interface could be designed, the data itself needed to be understood and structured in a way that AI could reason about accurately.
+          </p>
+          <div class="callout">
+            <p>"Before you can design how an administrator asks a question, you have to make sure the AI understands what the answer actually means."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE DATA LAYER WORK -->
+    <div class="case-section fade-up">
+      <p class="section-label">The data layer</p>
+      <div class="section-content">
+        <h2 class="section-heading">The work beneath<br><em>the interface.</em></h2>
+        <div class="section-body">
+          <p>
+            Most UX work on AI products starts at the interface — how does the user ask the question, how is the answer displayed. This project required going a layer deeper: working with data engineers to ensure the AI had the context it needed to answer correctly in the first place.
+          </p>
+          <p>
+            That meant reviewing every field in the giving data model — transactions, recurring schedules, donor records — understanding not just what each field contained, but <strong>what it meant to an administrator, how they'd talk about it, and what kind of queries they'd expect it to answer.</strong>
+          </p>
+          <p>
+            Labels, descriptions, and semantic context were added to give the AI the right framing — so when an administrator asks "show me lapsed donors from last quarter," the system understands what "lapsed" means in the church giving context, not just as a generic data concept.
+          </p>
+          <p>
+            I also worked on <strong>calculated fields</strong> — experimenting with custom metrics and making suggestions to the data engineering team based on my knowledge of how administrators actually think about giving performance. The UX knowledge informed the data model, not just the other way around.
+          </p>
+        </div>
+
+        <div class="data-table">
+          <div class="data-table-header">
+            <span>Data concept</span>
+            <span>What it means to the system</span>
+            <span>What it means to an admin</span>
+          </div>
+          <div class="data-table-row">
+            <div class="data-table-cell">Lapsed donor</div>
+            <div class="data-table-cell">No transaction records in defined period</div>
+            <div class="data-table-cell">Someone who used to give regularly but has stopped — a re-engagement opportunity</div>
+          </div>
+          <div class="data-table-row">
+            <div class="data-table-cell">Recurring schedule</div>
+            <div class="data-table-cell">Automated payment plan with frequency and amount</div>
+            <div class="data-table-cell">Predictable giving — the backbone of a church's financial planning</div>
+          </div>
+          <div class="data-table-row">
+            <div class="data-table-cell">Fund allocation</div>
+            <div class="data-table-cell">Transaction tagged to a specific designated fund</div>
+            <div class="data-table-cell">Where donors are directing their generosity — often tied to specific campaigns or ministries</div>
+          </div>
+          <div class="data-table-row">
+            <div class="data-table-cell">Net giving</div>
+            <div class="data-table-cell">Total transactions minus refunds in period</div>
+            <div class="data-table-cell">The real number — what actually came in after any reversals or failures</div>
+          </div>
+        </div>
+
+        <div class="placeholder" style="margin-top: 24px;">
+          <p><strong>To add:</strong> Additional taxonomy examples and the specific calculated fields (metrics/calculations) worked on with the data engineering team.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESEARCH -->
+    <div class="case-section fade-up">
+      <p class="section-label">Research</p>
+      <div class="section-content">
+        <h2 class="section-heading">What administrators<br><em>actually needed to ask.</em></h2>
+        <div class="section-body">
+          <p>
+            Before designing the interface, I conducted user testing and interviews with church administrators to understand how they thought about giving data — not how the system stored it. The gap between those two things is where most data tools fail.
+          </p>
+          <p>
+            The research shaped both the data taxonomy work and the interface design — ensuring that the queries the AI could answer matched the questions administrators actually had.
+          </p>
+        </div>
+
+        <div class="insight-list">
+          <div class="insight-item">
+            <div class="insight-num">01</div>
+            <div class="insight-text"><strong>Administrators think in outcomes, not data fields.</strong> They ask "how are we trending compared to last year?" not "show me transactions grouped by date range with year-over-year delta." The taxonomy work bridged that gap.</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-num">02</div>
+            <div class="insight-text"><strong>Trust is the primary UX problem in AI data tools.</strong> Administrators needed confidence that what the AI surfaced was accurate before they'd act on it — especially for financial decisions. Validation and transparency became core design requirements, not afterthoughts.</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-num">03</div>
+            <div class="insight-text"><strong>Context changes the question.</strong> "Top donors" means something different at a 200-person church versus a 5,000-person church. Understanding the administrator's context — church size, giving culture, campaign cycles — shaped how results needed to be framed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KEY LEARNING -->
+    <div class="case-section fade-up">
+      <p class="section-label">Key insight</p>
+      <div class="section-content">
+        <h2 class="section-heading">The trust problem<br><em>nobody talks about.</em></h2>
+        <div class="section-body">
+          <p>
+            The biggest UX learning from this project wasn't about the interface — it was about confidence. Administrators were willing to use AI for data queries, but only if they could verify the output was correct before acting on it.
+          </p>
+          <p>
+            This is a real and underaddressed problem in AI product design. When the answer is a number tied to a financial decision, "trust the AI" isn't good enough. The design had to surface enough context that an administrator could sanity-check the result without needing to re-run the query themselves.
+          </p>
+        </div>
+
+        <div class="learning-block">
+          <p class="learning-label">Core insight</p>
+          <h3 class="learning-heading">AI outputs need<br><em>built-in verification.</em></h3>
+          <p class="learning-body">
+            Administrators need to see <strong>why the AI answered what it answered</strong> — not just what the answer is. Showing the data sources, the time range, the filters applied, and the calculation logic isn't a nice-to-have. It's the difference between a tool they trust and one they don't use.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FUTURE VISION -->
+    <div class="case-section fade-up">
+      <p class="section-label">Future vision</p>
+      <div class="section-content">
+        <h2 class="section-heading">What giving intelligence<br><em>could become.</em></h2>
+        <div class="section-body">
+          <p>
+            While the QuickSight integration addressed transaction data, the initial exploration for "Ask AI" went further — designing what a fully conversational giving intelligence could look like when the team had more control over the AI layer.
+          </p>
+          <p>
+            The vision: a Claude-like experience specifically for giving data, where administrators could have a real conversation with their numbers — follow up, save queries, build on previous answers, and get proactive insights rather than just reactive reports.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <h4 class="feature-title">Conversational queries</h4>
+            <p class="feature-desc">Natural language questions with follow-up capability — "show me lapsed donors" → "which of those gave more than $500 last year?"</p>
+          </div>
+          <div class="feature-item">
+            <h4 class="feature-title">Query history</h4>
+            <p class="feature-desc">Saved and revisitable queries so administrators can track the same metrics over time without re-building from scratch.</p>
+          </div>
+          <div class="feature-item">
+            <h4 class="feature-title">Suggested queries</h4>
+            <p class="feature-desc">Proactive suggestions based on church size, giving patterns, and seasonal giving cycles — surfacing insights administrators didn't know to ask for.</p>
+          </div>
+          <div class="feature-item">
+            <h4 class="feature-title">Data visualisation</h4>
+            <p class="feature-desc">Automatic chart and table generation from query results — the right format for the type of data being surfaced.</p>
+          </div>
+          <div class="feature-item">
+            <h4 class="feature-title">Project creation</h4>
+            <p class="feature-desc">Grouping related queries into a project or campaign view — so giving analysis around a capital campaign lives together.</p>
+          </div>
+          <div class="feature-item">
+            <h4 class="feature-title">Validation layer</h4>
+            <p class="feature-desc">Transparent sourcing for every answer — showing which data, which date range, which calculations — so administrators can verify before acting.</p>
+          </div>
+        </div>
+
+        <div class="handoff-note">
+          <p>This exploration was handed off to another designer when I moved to lead the Design System team. <strong>The taxonomy work, research findings, and initial interaction model formed the foundation for the next phase of this feature.</strong></p>
+        </div>
+
+        <div class="placeholder">
+          <p><strong>To add:</strong> Wireframes or exploration screens from the "Ask AI" vision work, and any additional detail on the QuickSight integration interface.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="next-case">
+    <div>
+      <p class="next-label">Back to work</p>
+      <a href="index.html#work" class="next-title">View all case studies →</a>
+    </div>
+    <a href="index.html#work" class="next-arrow">↗</a>
+  </div>
+
+  <footer style="padding: 24px 48px; border-top: 1px solid var(--line); display: flex; justify-content: space-between;">
+    <span style="font-size: 12px; font-weight: 300; color: var(--ink-faint);">© Melanie Owubokiri 2026</span>
+    <a href="index.html" style="font-size: 12px; font-weight: 300; color: var(--ink-faint); text-decoration: none;">Back to home</a>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
