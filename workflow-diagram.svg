@@ -1,0 +1,92 @@
+<svg width="100%" viewBox="0 0 680 660" role="img" xmlns="http://www.w3.org/2000/svg" style="font-family: 'DM Sans', system-ui, sans-serif;">
+  <title>AI-augmented design system workflow</title>
+  <desc>Six tools feed into Claude, which the designer directs, producing five outcomes across the design system.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .col-label { font-size: 11px; font-weight: 400; fill: #5a5955; letter-spacing: 0.06em; text-transform: uppercase; }
+      .box-rect { fill: #edeae4; stroke: #d8d5cf; }
+      .box-title { font-size: 13px; font-weight: 500; fill: #1a1916; }
+      .box-sub { font-size: 11px; font-weight: 300; fill: #504f4a; }
+      .centre-rect { fill: #d8d5cf; stroke: #b0aea8; }
+      .centre-title { font-size: 13px; font-weight: 500; fill: #1a1916; }
+      .centre-sub { font-size: 11px; font-weight: 300; fill: #504f4a; }
+      .connector { fill: none; stroke: #b0aea8; stroke-width: 0.8; marker-end: url(#arrow); }
+      .connector-dashed { fill: none; stroke: #888780; stroke-width: 1; stroke-dasharray: 4 3; marker-end: url(#arrow); }
+      .divider { stroke: #d8d5cf; stroke-width: 0.5; }
+      .bottom-note { font-size: 11px; font-weight: 300; fill: #5a5955; letter-spacing: 0.04em; }
+    </style>
+  </defs>
+
+  <!-- Column labels -->
+  <text class="col-label" x="119" y="28" text-anchor="middle">Tools</text>
+  <text class="col-label" x="340" y="28" text-anchor="middle">Designer + Claude</text>
+  <text class="col-label" x="561" y="28" text-anchor="middle">Outcomes</text>
+
+  <!-- Dividers -->
+  <line x1="220" y1="18" x2="220" y2="638" class="divider"/>
+  <line x1="460" y1="18" x2="460" y2="638" class="divider"/>
+
+  <!-- TOOLS -->
+  <g><rect x="40" y="48" width="158" height="44" rx="4" class="box-rect" stroke-width="0.5"/><text class="box-title" x="119" y="72" text-anchor="middle" dominant-baseline="central">Figma + Console MCP</text></g>
+  <g><rect x="40" y="148" width="158" height="44" rx="4" class="box-rect" stroke-width="0.5"/><text class="box-title" x="119" y="172" text-anchor="middle" dominant-baseline="central">DS Assistant MCP</text></g>
+  <g><rect x="40" y="248" width="158" height="44" rx="4" class="box-rect" stroke-width="0.5"/><text class="box-title" x="119" y="272" text-anchor="middle" dominant-baseline="central">Storybook + GitHub</text></g>
+  <g><rect x="40" y="348" width="158" height="44" rx="4" class="box-rect" stroke-width="0.5"/><text class="box-title" x="119" y="372" text-anchor="middle" dominant-baseline="central">Atlassian / Jira</text></g>
+  <g><rect x="40" y="448" width="158" height="44" rx="4" class="box-rect" stroke-width="0.5"/><text class="box-title" x="119" y="472" text-anchor="middle" dominant-baseline="central">Dovetail</text></g>
+  <g><rect x="40" y="548" width="158" height="44" rx="4" class="box-rect" stroke-width="0.5"/><text class="box-title" x="119" y="572" text-anchor="middle" dominant-baseline="central">Pendo</text></g>
+
+  <!-- CENTRE -->
+  <g><rect x="268" y="48" width="144" height="52" rx="8" class="centre-rect" stroke-width="0.5"/>
+    <text class="centre-title" x="340" y="68" text-anchor="middle" dominant-baseline="central">Designer</text>
+    <text class="centre-sub" x="340" y="87" text-anchor="middle" dominant-baseline="central">directs + validates</text>
+  </g>
+  <g><rect x="268" y="330" width="144" height="52" rx="8" class="centre-rect" stroke-width="0.5"/>
+    <text class="centre-title" x="340" y="350" text-anchor="middle" dominant-baseline="central">Claude</text>
+    <text class="centre-sub" x="340" y="369" text-anchor="middle" dominant-baseline="central">executes + connects</text>
+  </g>
+
+  <!-- Designer → Claude -->
+  <line x1="340" y1="100" x2="340" y2="330" class="connector-dashed"/>
+
+  <!-- Tools → Claude -->
+  <path d="M198 70 L268 350" class="connector" opacity="0.5"/>
+  <path d="M198 170 L268 350" class="connector" opacity="0.5"/>
+  <path d="M198 270 L268 356" class="connector" opacity="0.5"/>
+  <path d="M198 370 L268 356" class="connector" opacity="0.5"/>
+  <path d="M198 470 L268 370" class="connector" opacity="0.5"/>
+  <path d="M198 570 L268 378" class="connector" opacity="0.5"/>
+
+  <!-- OUTCOMES -->
+  <g><rect x="482" y="98" width="158" height="52" rx="4" class="box-rect" stroke-width="0.5"/>
+    <text class="box-title" x="561" y="117" text-anchor="middle" dominant-baseline="central">DS documentation</text>
+    <text class="box-sub" x="561" y="136" text-anchor="middle" dominant-baseline="central">92% faster</text>
+  </g>
+  <g><rect x="482" y="198" width="158" height="52" rx="4" class="box-rect" stroke-width="0.5"/>
+    <text class="box-title" x="561" y="217" text-anchor="middle" dominant-baseline="central">Icon library</text>
+    <text class="box-sub" x="561" y="236" text-anchor="middle" dominant-baseline="central">95% faster</text>
+  </g>
+  <g><rect x="482" y="298" width="158" height="52" rx="4" class="box-rect" stroke-width="0.5"/>
+    <text class="box-title" x="561" y="317" text-anchor="middle" dominant-baseline="central">DS health checks</text>
+    <text class="box-sub" x="561" y="336" text-anchor="middle" dominant-baseline="central">Now on demand</text>
+  </g>
+  <g><rect x="482" y="398" width="158" height="52" rx="4" class="box-rect" stroke-width="0.5"/>
+    <text class="box-title" x="561" y="417" text-anchor="middle" dominant-baseline="central">Component migration</text>
+    <text class="box-sub" x="561" y="436" text-anchor="middle" dominant-baseline="central">88% faster</text>
+  </g>
+  <g><rect x="482" y="498" width="158" height="52" rx="4" class="box-rect" stroke-width="0.5"/>
+    <text class="box-title" x="561" y="517" text-anchor="middle" dominant-baseline="central">Design to Figma</text>
+    <text class="box-sub" x="561" y="536" text-anchor="middle" dominant-baseline="central">Zero search friction</text>
+  </g>
+
+  <!-- Claude → Outcomes -->
+  <path d="M412 350 L482 124" class="connector" opacity="0.5"/>
+  <path d="M412 350 L482 224" class="connector" opacity="0.5"/>
+  <path d="M412 356 L482 324" class="connector" opacity="0.5"/>
+  <path d="M412 356 L482 424" class="connector" opacity="0.5"/>
+  <path d="M412 370 L482 524" class="connector" opacity="0.5"/>
+
+  <!-- Bottom note -->
+  <text class="bottom-note" x="340" y="635" text-anchor="middle">One workflow — not tool-switching</text>
+</svg>
