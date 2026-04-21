@@ -461,9 +461,9 @@
 <body>
 <script>
 (function() {
-  const PASS = "viewmel’swork";
+  const PASS = "viewportfolio";
   const KEY = "portfolio_auth";
-  if (sessionStorage.getItem(KEY) === "1") return;
+  if (localStorage.getItem(KEY) === "1") return;
   document.documentElement.style.visibility = "hidden";
   const overlay = document.createElement("div");
   overlay.id = "pw-overlay";
@@ -494,7 +494,7 @@
   function attempt() {
     const val = document.getElementById("pw-input").value;
     if (val === PASS) {
-      sessionStorage.setItem(KEY, "1");
+      localStorage.setItem(KEY, "1");
       overlay.remove();
     } else {
       const inp = document.getElementById("pw-input");
