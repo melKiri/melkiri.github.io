@@ -30,6 +30,7 @@
 ## Spacing
 
 - Section padding: 100px vertical, 48px horizontal (desktop) → 60px / 24px (mobile)
+- Max content width: 1440px, auto-centered on wider viewports via `padding: Xpx max(48px, calc((100% - 1440px) / 2 + 48px))`
 - Breakpoint: 768px
 
 ## Design Principles
@@ -58,3 +59,20 @@ CSS tokens:
 --serif: 'DM Serif Display', Georgia, serif;
 --sans: 'Inter', system-ui, sans-serif;
 ```
+
+## Deployment & password protection
+
+The site deploys to GitHub Pages via the `.github/workflows/deploy.yml` workflow. The workflow triggers on every push to `main` (or manually via *Actions → Deploy to GitHub Pages → Run workflow*).
+
+Three case studies are password-gated with a client-side overlay: `case-appstudio.html`, `case-giving.html`, `case-staq.html`. The password lives as a GitHub repository secret called `PORTFOLIO_PASSWORD` and is injected into the HTML at build time. The source files contain only the placeholder `__PORTFOLIO_PASSWORD__` — the real password is never committed to the repo.
+
+**To rotate the password:**
+
+1. Go to *Settings → Secrets and variables → Actions*
+2. Click `PORTFOLIO_PASSWORD` → *Update secret* → paste new value → *Update*
+3. Either push a new commit, or run the workflow manually from the *Actions* tab
+
+**Security posture:** This is a lightweight speed bump, not real security. The injected password is visible in the deployed HTML when someone views source. For stronger protection of NDA content (encryption at rest), switch to `staticrypt` or move content off GitHub Pages. See session notes for options.
+
+**Important GitHub Pages setting:** Pages must be set to build from GitHub Actions, not from a branch. *Settings → Pages → Build and deployment → Source: GitHub Actions.*
+
