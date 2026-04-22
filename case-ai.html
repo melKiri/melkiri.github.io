@@ -38,7 +38,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 48px;
+      padding: 20px max(48px, calc((100% - 1440px) / 2 + 48px));
       background: var(--surface);
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s;
@@ -65,7 +65,7 @@
 
     /* HERO */
     .case-hero {
-      padding: 140px 48px 80px;
+      padding: 140px max(48px, calc((100% - 1440px) / 2 + 48px)) 80px;
       border-bottom: 1px solid var(--line);
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -162,7 +162,7 @@
     .case-body { max-width: 1200px; margin: 0 auto; }
 
     .case-section {
-      padding: 80px 48px;
+      padding: 80px max(48px, calc((100% - 1440px) / 2 + 48px));
       border-bottom: 1px solid var(--line);
       display: grid;
       grid-template-columns: 220px 1fr;
@@ -414,7 +414,7 @@
 
     /* NEXT */
     .next-case {
-      padding: 80px 48px;
+      padding: 80px max(48px, calc((100% - 1440px) / 2 + 48px));
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -713,7 +713,7 @@
     <a href="case-giving.html" class="next-arrow">↗</a>
   </div>
 
-  <footer style="padding: 24px 48px; border-top: 1px solid var(--line); display: flex; justify-content: space-between;">
+  <footer style="padding: 24px max(48px, calc((100% - 1440px) / 2 + 48px)); border-top: 1px solid var(--line); display: flex; justify-content: space-between;">
     <span style="font-size: 12px; font-weight: 300; color: var(--ink-faint);">© Melanie Owubokiri 2026</span>
     <a href="index.html" style="font-size: 12px; font-weight: 300; color: var(--ink-faint); text-decoration: none;">Back to home</a>
   </footer>

@@ -40,7 +40,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 48px;
+      padding: 20px max(48px, calc((100% - 1440px) / 2 + 48px));
       background: var(--surface);
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s;
@@ -78,6 +78,8 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       padding-top: 80px;
+      max-width: 1440px;
+      margin: 0 auto;
     }
 
     .hero-left {
@@ -210,7 +212,7 @@
 
     /* SECTION BASE */
     section {
-      padding: 100px 48px;
+      padding: 100px max(48px, calc((100% - 1440px) / 2 + 48px));
       border-top: 1px solid var(--line);
     }
 
@@ -394,7 +396,7 @@
 
     /* FOOTER */
     footer {
-      padding: 24px 48px;
+      padding: 24px max(48px, calc((100% - 1440px) / 2 + 48px));
       border-top: 1px solid var(--line);
       display: flex;
       justify-content: space-between;
@@ -473,24 +475,24 @@
     <div class="hero-right">
       <div class="hero-stats">
         <div class="stat">
-          <div class="stat-num">7</div>
-          <div class="stat-label">Products unified in one design system</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">4→1</div>
-          <div class="stat-label">Libraries consolidated</div>
+          <div class="stat-num">8</div>
+          <div class="stat-label">Products consuming the design system</div>
         </div>
         <div class="stat">
           <div class="stat-num">88%</div>
           <div class="stat-label">Faster component migration with AI</div>
         </div>
         <div class="stat">
-          <div class="stat-num">17k</div>
-          <div class="stat-label">Variables migrated in a single day</div>
+          <div class="stat-num">AA→AAA</div>
+          <div class="stat-label">WCAG 2.2 baseline, AAA on roadmap</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">NZ + US</div>
+          <div class="stat-label">Markets, one design system</div>
         </div>
       </div>
       <p class="hero-note">
-        Currently: Design System Lead at Pushpay — bridging Product, UX, and Engineering across NZ &amp; US markets.
+        Currently leading Pushpay's UX + Engineering design system team — enabling 8 products across NZ &amp; US. A shared resource, not a gate.
       </p>
     </div>
   </section>
