@@ -1,0 +1,66 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Inject password into protected case studies
+        env:
+          PORTFOLIO_PASSWORD: ${{ secrets.PORTFOLIO_PASSWORD }}
+        run: |
+          if [ -z "${PORTFOLIO_PASSWORD}" ]; then
+            echo "ERROR: PORTFOLIO_PASSWORD secret is not set."
+            echo "Add it under Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+          python3 <<'PYEOF'
+          import os
+          password = os.environ['PORTFOLIO_PASSWORD']
+          files = ['case-appstudio.html', 'case-giving.html', 'case-staq.html']
+          for f in files:
+              with open(f, 'r', encoding='utf-8') as file:
+                  content = file.read()
+              if '__PORTFOLIO_PASSWORD__' not in content:
+                  print(f"WARNING: placeholder not found in {f}")
+                  continue
+              content = content.replace('__PORTFOLIO_PASSWORD__', password)
+              with open(f, 'w', encoding='utf-8') as file:
+                  file.write(content)
+              print(f"Injected password into {f}")
+          PYEOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
