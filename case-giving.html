@@ -573,10 +573,10 @@
         <h2 class="section-heading">AI that understands<br><em>church giving data.</em></h2>
         <div class="section-body">
           <p>
-            Church administrators manage complex giving data — transactions, recurring schedules, lapsed donors, campaign performance, fund allocation. Making sense of that data historically required manual exports, spreadsheet work, or relying on a data team. The opportunity was to put AI-powered analytics directly in the hands of the people who needed it most.
+            Church administrators manage complex giving data — transactions, recurring schedules, lapsed donors, campaign performance, fund allocation. Making sense of it historically meant manual exports, spreadsheet work, or relying on a data team. The opportunity: AI-powered analytics in the hands of the people who needed it most.
           </p>
           <p>
-            The integration used AWS QuickSight to surface giving insights — but before the interface could be designed, the data itself needed to be understood and structured in a way that AI could reason about accurately.
+            The integration used AWS QuickSight to surface giving insights — but before any interface could be designed, the data itself needed to be structured so AI could reason about it accurately.
           </p>
           <div class="callout">
             <p>"Before you can design how an administrator asks a question, you have to make sure the AI understands what the answer actually means."</p>
@@ -592,16 +592,16 @@
         <h2 class="section-heading">The work beneath<br><em>the interface.</em></h2>
         <div class="section-body">
           <p>
-            Most UX work on AI products starts at the interface — how does the user ask the question, how is the answer displayed. This project required going a layer deeper: working with data engineers to ensure the AI had the context it needed to answer correctly in the first place.
+            Most UX work on AI products starts at the interface — how the user asks the question, how the answer is displayed. This project went a layer deeper: working with data engineers to ensure the AI had the context to answer correctly in the first place.
           </p>
           <p>
-            That meant reviewing every field in the giving data model — transactions, recurring schedules, donor records — understanding not just what each field contained, but <strong>what it meant to an administrator, how they'd talk about it, and what kind of queries they'd expect it to answer.</strong>
+            That meant reviewing every field in the giving data model — transactions, recurring schedules, donor records — understanding <strong>what each field meant to an administrator, how they'd talk about it, and what kind of queries they'd expect it to answer.</strong>
           </p>
           <p>
-            Labels, descriptions, and semantic context were added to give the AI the right framing — so when an administrator asks "show me lapsed donors from last quarter," the system understands what "lapsed" means in the church giving context, not just as a generic data concept.
+            Labels, descriptions, and semantic context gave the AI the right framing — so when an administrator asks "show me lapsed donors from last quarter," the system understands what "lapsed" means in church giving, not just as a generic data concept.
           </p>
           <p>
-            I also worked on <strong>calculated fields</strong> — experimenting with custom metrics and making suggestions to the data engineering team based on my knowledge of how administrators actually think about giving performance. The UX knowledge informed the data model, not just the other way around.
+            I also worked on <strong>calculated fields</strong> — experimenting with custom metrics and suggesting them to the data engineering team based on how administrators actually think about giving performance. UX knowledge informed the data model, not just the other way around.
           </p>
         </div>
 
@@ -645,7 +645,7 @@
             Before designing the interface, I conducted user testing and interviews with church administrators to understand how they thought about giving data — not how the system stored it. The gap between those two things is where most data tools fail.
           </p>
           <p>
-            The research shaped both the data taxonomy work and the interface design — ensuring that the queries the AI could answer matched the questions administrators actually had.
+            The research shaped both the taxonomy and the interface — ensuring the queries the AI could answer matched what administrators actually asked.
           </p>
         </div>
 
@@ -673,10 +673,10 @@
         <h2 class="section-heading">The trust problem<br><em>nobody talks about.</em></h2>
         <div class="section-body">
           <p>
-            The biggest UX learning from this project wasn't about the interface — it was about confidence. Administrators were willing to use AI for data queries, but only if they could verify the output was correct before acting on it.
+            The biggest UX learning wasn't about the interface — it was about confidence. Administrators were willing to use AI for queries, but only if they could verify the output before acting on it.
           </p>
           <p>
-            This is a real and underaddressed problem in AI product design. When the answer is a number tied to a financial decision, "trust the AI" isn't good enough. The design had to surface enough context that an administrator could sanity-check the result without needing to re-run the query themselves.
+            It's an underaddressed problem in AI product design. When the answer is a number tied to a financial decision, "trust the AI" isn't good enough. The design had to surface enough context that an administrator could sanity-check the result without re-running the query.
           </p>
         </div>
 
@@ -684,7 +684,7 @@
           <p class="learning-label">Core insight</p>
           <h3 class="learning-heading">AI outputs need<br><em>built-in verification.</em></h3>
           <p class="learning-body">
-            Administrators need to see <strong>why the AI answered what it answered</strong> — not just what the answer is. Showing the data sources, the time range, the filters applied, and the calculation logic isn't a nice-to-have. It's the difference between a tool they trust and one they don't use.
+            Administrators need to see <strong>why the AI answered what it answered</strong> — not just what. Showing the data sources, time range, filters applied, and calculation logic isn't a nice-to-have. It's the difference between a tool they trust and one they don't use.
           </p>
         </div>
       </div>
@@ -697,10 +697,10 @@
         <h2 class="section-heading">What giving intelligence<br><em>could become.</em></h2>
         <div class="section-body">
           <p>
-            While the QuickSight integration addressed transaction data, the initial exploration for "Ask AI" went further — designing what a fully conversational giving intelligence could look like when the team had more control over the AI layer.
+            While the QuickSight integration handled transaction data, the "Ask AI" exploration went further — designing what fully conversational giving intelligence could look like with more control over the AI layer.
           </p>
           <p>
-            The vision: a Claude-like experience specifically for giving data, where administrators could have a real conversation with their numbers — follow up, save queries, build on previous answers, and get proactive insights rather than just reactive reports.
+            The vision: a Claude-like experience for giving data — administrators having a real conversation with their numbers, following up, saving queries, building on previous answers, and getting proactive insights instead of reactive reports.
           </p>
         </div>
 
