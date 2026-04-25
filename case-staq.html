@@ -590,7 +590,7 @@
       <div class="stat-label">Libraries consolidated</div>
     </div>
     <div class="stat-item fade-up">
-      <div class="stat-num">30+→1</div>
+      <div class="stat-num">30+→13</div>
       <div class="stat-label">Button variants reduced</div>
     </div>
     <div class="stat-item fade-up">
@@ -662,7 +662,7 @@
             <div class="timeline-marker"></div>
             <p class="timeline-phase">Phase 03 · Now</p>
             <h3 class="timeline-title">One library, variable-driven</h3>
-            <p class="timeline-desc">When Figma released Variables, the architecture became possible. I led the consolidation into a single library — building semantic token collections, modes for responsiveness and user types, and multi-brand theming. 30+ button variants became one. The north star: full parity between Figma and Storybook, ready for when all products move into one unified SaaS.</p>
+            <p class="timeline-desc">When Figma released Variables, the architecture became possible. I led the consolidation into a single library — building semantic token collections, modes for responsiveness and user types, and multi-brand theming. 30+ button variants became 13. The north star: full parity between Figma and Storybook, ready for when all products move into one unified SaaS.</p>
           </div>
         </div>
       </div>
@@ -672,13 +672,16 @@
     <div class="case-section fade-up">
       <p class="section-label">The technical work</p>
       <div class="section-content">
-        <h2 class="section-heading">From 30 button variants<br><em>to one.</em></h2>
+        <h2 class="section-heading">From 30 button variants<br><em>down to 13.</em></h2>
         <div class="section-body">
           <p>
             The most concrete example of what changed: buttons. Before the variable architecture, every product needed its own button variants — default, hover, active, for each product colour. That's over 30 variants to maintain, update, and keep consistent. A change to one product's button required manual updates everywhere else.
           </p>
           <p>
-            With Figma Variables and semantic token collections, a single button component uses modes to swap colour. <strong>Change the mode, change the product. No duplicate components. No manual maintenance.</strong>
+            With Figma Variables and semantic token collections, 13 button components use modes to swap colour and state. <strong>Change the mode, change the product. No duplicate components. No manual maintenance.</strong>
+          </p>
+          <p>
+            The same pattern, scaled up: <strong>product templates.</strong> Where every product had its own four screen artboards — 16 templates total across four products — the variable architecture collapsed them into <strong>one Product Template</strong> that changes its look, size, and feel based on which mode is active.
           </p>
         </div>
 
@@ -688,6 +691,7 @@
             <ul class="compare-list before">
               <li>One library per product — siloed and unsynchronised</li>
               <li>30+ button variants — one per product colour state</li>
+              <li>16 product templates — four artboards across four products</li>
               <li>Flat variable structure — no semantic layer</li>
               <li>Theming required rebuilding components per brand</li>
               <li>Design debt faster than resolution</li>
@@ -699,7 +703,8 @@
             <p class="compare-label">After</p>
             <ul class="compare-list after">
               <li>One unified library — all products, all surfaces</li>
-              <li>1 button component — colour driven by variable modes</li>
+              <li>13 button components — colour driven by variable modes</li>
+              <li>1 Product Template — look, size, and feel adapt by mode</li>
               <li>Semantic token collections — primitive separated from semantic</li>
               <li>Light/dark, B2B/B2C, multi-brand in a single system</li>
               <li>~60% less maintenance overhead</li>
@@ -728,7 +733,7 @@
           <div class="detail-item">
             <p class="detail-label">Storybook alignment</p>
             <h4 class="detail-heading">Design meets engineering</h4>
-            <p class="detail-body">Engineering's component library (Tempest Shadow / Storybook) and the Figma UI library need to speak the same language. Currently leading the work to establish parity — so a component in Figma maps cleanly to its built counterpart, with no interpretation gap.</p>
+            <p class="detail-body">The component library, Storybook and the Figma UI library need to speak the same language. Currently leading the work to establish parity — so a component in Figma maps cleanly to its built counterpart, with no interpretation gap.</p>
           </div>
         </div>
       </div>
@@ -744,7 +749,7 @@
             As Design System Lead, my role has shifted from building the system to governing it — setting priorities, defining component health, and ensuring that what's in Figma and what's in Storybook stay aligned as both evolve.
           </p>
           <p>
-            I act as the bridge between Product, UX, and the Tempest Shadow engineering team. No component exists twice. Every piece of work is tracked in Jira using an atomic design structure I built — so anyone on the team can see component state, dependencies, and what's blocking what at a glance.
+            I act as the bridge between Product, UX, and the engineering team. No component exists twice. Every piece of work is tracked in Jira using an atomic design structure I built — so anyone on the team can see component state, dependencies, and what's blocking what at a glance.
           </p>
         </div>
 
@@ -812,10 +817,6 @@
             <div class="progress-track"><div class="progress-fill" style="width: 10%"></div></div>
             <span class="progress-pct">Started</span>
           </div>
-        </div>
-
-        <div class="placeholder" style="margin-top: 32px;">
-          <p><strong>To add:</strong> Screenshots from the Figma library — before/after component structure, variable collections, or the Groups page that started it all.</p>
         </div>
       </div>
     </div>
