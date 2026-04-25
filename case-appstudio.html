@@ -390,6 +390,143 @@
       line-height: 1.65;
     }
 
+    /* STUDIOC DEEP-DIVE */
+    .studioc-block { margin-top: 48px; }
+    .studioc-block + .studioc-block { margin-top: 64px; }
+
+    .studioc-block-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+    }
+
+    .studioc-block-title {
+      font-family: var(--serif);
+      font-size: 28px;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .studioc-block-body {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.8;
+      max-width: 720px;
+    }
+
+    .studioc-block-body strong { color: var(--ink); font-weight: 500; }
+    .studioc-block-body p + p { margin-top: 14px; }
+
+    .studioc-screens {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .studioc-screens.admin { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+
+    .studioc-screen {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .studioc-screen-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 393 / 844;
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+    }
+
+    .studioc-screens.admin .studioc-screen-frame { aspect-ratio: 1440 / 1024; }
+
+    .studioc-screen-frame .img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-faint);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .studioc-screen-frame img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .studioc-screen-tag {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .studioc-screen-caption {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.55;
+    }
+
+    .studioc-metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 28px;
+    }
+
+    .studioc-metric {
+      background: var(--surface);
+      padding: 28px;
+    }
+
+    .studioc-metric-axis {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 10px;
+    }
+
+    .studioc-metric-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.3;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .studioc-metric-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    .feature-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 8px;
+    }
+
     /* NEXT CASE */
     .next-case {
       padding: 80px max(48px, calc((100% - 1440px) / 2 + 48px));
@@ -443,6 +580,7 @@
       .section-label { position: static; }
       .features-grid { grid-template-columns: 1fr; }
       .outcome-grid { grid-template-columns: 1fr; }
+      .studioc-metric-grid { grid-template-columns: 1fr; }
       .next-case { padding: 60px 24px; flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -633,7 +771,10 @@
               Integrated StudioC's personalisation capabilities into App Studio, giving church admins a new layer of control over their app's content and branding. Required deep collaboration with the StudioC team to understand their model and design a seamless admin experience that didn't feel bolted on.
             </p>
             <p class="feature-collab">Collaboration: StudioC (third-party) · App Studio Engineering</p>
-            <a href="https://pushpay.com/integrations/studioc/" target="_blank" class="feature-link">View integration ↗</a>
+            <div class="feature-links">
+              <a href="#studioc-deep-dive" class="feature-link">Read the deep-dive ↓</a>
+              <a href="https://pushpay.com/integrations/studioc/" target="_blank" class="feature-link">View integration ↗</a>
+            </div>
           </div>
 
           <div class="feature-card">
@@ -664,6 +805,135 @@
             <p class="feature-collab">Collaboration: App Studio Engineering · UX Research</p>
           </div>
 
+        </div>
+      </div>
+    </div>
+
+    <!-- STUDIOC DEEP-DIVE -->
+    <div class="case-section fade-up" id="studioc-deep-dive">
+      <p class="section-label">Deep-dive</p>
+      <div class="section-content">
+        <h2 class="section-heading">StudioC, up close.<br><em>One feature, two user types, three measures of success.</em></h2>
+        <div class="section-body">
+          <p>
+            StudioC brings a third-party personalisation model into the Church App. The auth model available at the time meant log-in happens on the church's side — so I designed a pragmatic pattern around that constraint: anonymous content shows by default, with an invitation to log in, not a wall.
+          </p>
+          <div class="callout">
+            <p>"Admin configures it once. Congregant sees it every time they open the app."</p>
+          </div>
+        </div>
+
+        <!-- BLOCK 1 — ADMIN SIDE -->
+        <div class="studioc-block">
+          <p class="studioc-block-label">User type 01 — Church admins</p>
+          <h3 class="studioc-block-title">Configuring StudioC inside App Studio</h3>
+          <div class="studioc-block-body">
+            <p>
+              StudioC slots into the Integrations panel as a new draggable — same authoring model admins already knew. <strong>What they set in Home Settings becomes what congregants see.</strong>
+            </p>
+          </div>
+          <div class="studioc-screens admin">
+            <div class="studioc-screen">
+              <div class="studioc-screen-frame">
+                <div class="img-placeholder">no studioc.png</div>
+                <img src="assets/studioc/no%20studioc.png" alt="App Studio App Content panel with StudioC available in Integrations" onerror="this.style.display='none'">
+              </div>
+              <span class="studioc-screen-tag">Admin view · 01</span>
+              <p class="studioc-screen-caption">StudioC sits alongside existing draggables — nothing new to learn.</p>
+            </div>
+            <div class="studioc-screen">
+              <div class="studioc-screen-frame">
+                <div class="img-placeholder">StudioCSettings.png</div>
+                <img src="assets/studioc/StudioCSettings.png" alt="Home Settings configuration with live mobile preview" onerror="this.style.display='none'">
+              </div>
+              <span class="studioc-screen-tag">Admin view · 02</span>
+              <p class="studioc-screen-caption">Title, description, CTA — with live mobile preview before publish.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOCK 2 — CONGREGANT SIDE -->
+        <div class="studioc-block">
+          <p class="studioc-block-label">User type 02 — Congregants</p>
+          <h3 class="studioc-block-title">What congregants see in the Church App</h3>
+          <div class="studioc-block-body">
+            <p>
+              No forced log-in. The invitation sits <em>above</em> consumable content — log in to personalise, or keep reading anonymously.
+            </p>
+          </div>
+          <div class="studioc-screens">
+            <div class="studioc-screen">
+              <div class="studioc-screen-frame">
+                <div class="img-placeholder">Home Screen.png</div>
+                <img src="assets/studioc/Home%20Screen.png" alt="Church App anonymous feed with login invitation card" onerror="this.style.display='none'">
+              </div>
+              <span class="studioc-screen-tag">Congregant · 01</span>
+              <p class="studioc-screen-caption">Invitation, not a wall.</p>
+            </div>
+            <div class="studioc-screen">
+              <div class="studioc-screen-frame">
+                <div class="img-placeholder">Log in.png</div>
+                <img src="assets/studioc/Log%20in.png" alt="Church-configured log-in page" onerror="this.style.display='none'">
+              </div>
+              <span class="studioc-screen-tag">Congregant · 02</span>
+              <p class="studioc-screen-caption">Phone or email — church's own profile, not a Pushpay account.</p>
+            </div>
+            <div class="studioc-screen">
+              <div class="studioc-screen-frame">
+                <div class="img-placeholder">Loggedin.png</div>
+                <img src="assets/studioc/Loggedin.png" alt="Personalised feed after log-in" onerror="this.style.display='none'">
+              </div>
+              <span class="studioc-screen-tag">Congregant · 03</span>
+              <p class="studioc-screen-caption">After log-in — the feed personalises. Invitation card drops away.</p>
+            </div>
+            <div class="studioc-screen">
+              <div class="studioc-screen-frame">
+                <div class="img-placeholder">loggedin-poll.png</div>
+                <img src="assets/studioc/loggedin-poll.png" alt="Logged-in interactive content including polls" onerror="this.style.display='none'">
+              </div>
+              <span class="studioc-screen-tag">Congregant · 04</span>
+              <p class="studioc-screen-caption">Interactive content — polls, media, responses — now available to the known user.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOCK 3 — METRICS -->
+        <div class="studioc-block">
+          <p class="studioc-block-label">How we measured success</p>
+          <h3 class="studioc-block-title">Three axes, three stakeholders</h3>
+          <div class="studioc-block-body">
+            <p>
+              One-sided metrics flatter. Three axes kept us honest.
+            </p>
+          </div>
+          <div class="studioc-metric-grid">
+            <div class="studioc-metric">
+              <p class="studioc-metric-axis">Admin experience</p>
+              <h4 class="studioc-metric-name">Setup confidence</h4>
+              <p class="studioc-metric-desc">Can a church admin configure it without support?</p>
+            </div>
+            <div class="studioc-metric">
+              <p class="studioc-metric-axis">Congregant adoption</p>
+              <h4 class="studioc-metric-name">Invitation-to-action</h4>
+              <p class="studioc-metric-desc">Does the soft log-in pattern convert better than a wall?</p>
+            </div>
+            <div class="studioc-metric">
+              <p class="studioc-metric-axis">Product impact</p>
+              <h4 class="studioc-metric-name">Engagement signal</h4>
+              <p class="studioc-metric-desc">Does personalised content change behaviour, or just move it?</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOCK 4 — PATTERN -->
+        <div class="studioc-block">
+          <p class="studioc-block-label">Pattern worth noting</p>
+          <h3 class="studioc-block-title">Why this pattern travels.</h3>
+          <div class="studioc-block-body">
+            <p>
+              A content model where admins configure once and end-users experience the result — anonymous-by-default with a soft invitation — is the kind that invites <strong>progression mechanics</strong>. Unlocking content as users move through a personalised journey. A direction I'd explore in any content-driven product, not just this one.
+            </p>
+          </div>
         </div>
       </div>
     </div>
