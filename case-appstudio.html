@@ -29,6 +29,7 @@
       color: var(--ink);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     /* NAV */
@@ -637,12 +638,8 @@
       .studioc-screens.admin { grid-template-columns: none; }
       .studioc-screen {
         flex: 0 0 70%;
-        min-width: 240px;
+        max-width: 240px;
         scroll-snap-align: start;
-      }
-      .studioc-screens.admin .studioc-screen {
-        flex: 0 0 85%;
-        min-width: 280px;
       }
     }
   </style>
@@ -898,26 +895,8 @@
           <h3 class="studioc-block-title">Configuring StudioC inside App Studio</h3>
           <div class="studioc-block-body">
             <p>
-              StudioC slots into the Integrations panel as a new draggable — same authoring model admins already knew. <strong>What they set in Home Settings becomes what congregants see.</strong>
+              StudioC slots into the Integrations panel as a new draggable — same authoring model admins already knew. <strong>What they set in Home Settings becomes what congregants see.</strong> Title, description and CTA are configured once, with a live mobile preview before publish.
             </p>
-          </div>
-          <div class="studioc-screens admin">
-            <div class="studioc-screen">
-              <div class="studioc-screen-frame">
-                <div class="img-placeholder">no studioc.png</div>
-                <img src="assets/studioc/no%20studioc.png" alt="App Studio App Content panel with StudioC available in Integrations" onerror="this.style.display='none'">
-              </div>
-              <span class="studioc-screen-tag">Admin view · 01</span>
-              <p class="studioc-screen-caption">StudioC sits alongside existing draggables — nothing new to learn.</p>
-            </div>
-            <div class="studioc-screen">
-              <div class="studioc-screen-frame">
-                <div class="img-placeholder">StudioCSettings.png</div>
-                <img src="assets/studioc/StudioCSettings.png" alt="Home Settings configuration with live mobile preview" onerror="this.style.display='none'">
-              </div>
-              <span class="studioc-screen-tag">Admin view · 02</span>
-              <p class="studioc-screen-caption">Title, description, CTA — with live mobile preview before publish.</p>
-            </div>
           </div>
         </div>
 

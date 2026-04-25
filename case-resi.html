@@ -29,6 +29,7 @@
       color: var(--ink);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     nav {
@@ -404,6 +405,129 @@
     }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
+    /* DEEP-DIVE — break-out section that goes wider than text column */
+    #resi-deep-dive .section-content { max-width: none; }
+    #resi-deep-dive .section-heading,
+    #resi-deep-dive .section-body,
+    #resi-deep-dive .deepdive-block-label,
+    #resi-deep-dive .deepdive-block-title,
+    #resi-deep-dive .deepdive-block-body,
+    #resi-deep-dive .deepdive-breadcrumbs { max-width: 720px; }
+
+    /* Breadcrumbs */
+    .deepdive-breadcrumbs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-faint);
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .deepdive-breadcrumbs a { color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
+    .deepdive-breadcrumbs a:hover { color: var(--ink); }
+    .deepdive-breadcrumbs span[aria-hidden] { color: var(--ink-faint); }
+    .deepdive-breadcrumbs .current { color: var(--ink); }
+
+    /* Deep-dive blocks */
+    .deepdive-block { margin-top: 48px; }
+    .deepdive-block + .deepdive-block { margin-top: 64px; }
+
+    .deepdive-block-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+    }
+
+    .deepdive-block-title {
+      font-family: var(--serif);
+      font-size: 28px;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .deepdive-block-body {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.8;
+    }
+    .deepdive-block-body strong { color: var(--ink); font-weight: 500; }
+    .deepdive-block-body p + p { margin-top: 14px; }
+
+    /* Screens grid: 4 cols by default. desktop frames span 3 cols, mobile frames 1 col. */
+    .deepdive-screens {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 28px;
+    }
+    .deepdive-screens.dual-mobile { grid-template-columns: repeat(2, 1fr); }
+
+    .deepdive-screen { display: flex; flex-direction: column; gap: 10px; }
+    .deepdive-screen.span-desktop { grid-column: span 3; }
+    .deepdive-screen.span-mobile { grid-column: span 1; }
+
+    .deepdive-screen-frame {
+      position: relative;
+      width: 100%;
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .deepdive-screen-frame.desktop { aspect-ratio: 1440 / 900; }
+    .deepdive-screen-frame.mobile { aspect-ratio: 393 / 844; }
+
+    .deepdive-screen-frame .img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-faint);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .deepdive-screen-frame img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .deepdive-screen-tag {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .deepdive-screen-caption {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 1199px) {
+      .deepdive-screens { grid-template-columns: repeat(2, 1fr); }
+      .deepdive-screen.span-desktop,
+      .deepdive-screen.span-mobile { grid-column: span 1; }
+    }
+
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
       .case-hero { grid-template-columns: 1fr; gap: 40px; padding: 120px 24px 60px; }
@@ -412,6 +536,33 @@
       .section-label { position: static; }
       .breakdown-grid { grid-template-columns: 1fr; }
       .next-case { padding: 60px 24px; flex-direction: column; align-items: flex-start; }
+
+      /* Mobile carousel for deep-dive screens */
+      .deepdive-screens,
+      .deepdive-screens.dual-mobile {
+        display: flex;
+        grid-template-columns: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        margin-left: -24px;
+        margin-right: -24px;
+        padding: 4px 24px 16px 24px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+      }
+      .deepdive-screen,
+      .deepdive-screen.span-desktop,
+      .deepdive-screen.span-mobile {
+        flex: 0 0 75%;
+        max-width: 320px;
+        scroll-snap-align: start;
+        grid-column: auto;
+      }
+      .deepdive-screen.span-desktop {
+        flex: 0 0 90%;
+        max-width: 520px;
+      }
     }
   </style>
 </head>
@@ -596,6 +747,127 @@
           <p class="placeholder-text">
             <strong>To add:</strong> Specific pushback moments or key decisions from documentation — where you advocated for a different direction and why.
           </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESI DEEP-DIVE -->
+    <div class="case-section fade-up" id="resi-deep-dive">
+      <p class="section-label">Deep-dive</p>
+      <div class="section-content">
+        <nav class="deepdive-breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">All work</a>
+          <span aria-hidden="true">›</span>
+          <a href="#nav">Resi × Pushpay</a>
+          <span aria-hidden="true">›</span>
+          <span class="current">Deep-dive: Resi On Demand</span>
+        </nav>
+        <h2 class="section-heading">Resi On Demand, up close.<br><em>The end-user surfaces I designed across two products.</em></h2>
+        <div class="section-body">
+          <p>
+            Resi sat with its own team, design system, and roadmap. My remit was the <strong>end-user side</strong> of two surfaces — the standalone Resi On Demand product, and how that experience lived inside the Church App. Five features anchored the work: playlists, live, search, tags, and recommendations.
+          </p>
+          <div class="callout">
+            <p>"What admins curate upstream becomes what congregants browse, search, and play."</p>
+          </div>
+        </div>
+
+        <!-- BLOCK 1 — LANDING -->
+        <div class="deepdive-block">
+          <p class="deepdive-block-label">Surface 01 — Resi On Demand</p>
+          <h3 class="deepdive-block-title">Landing built for short attention.</h3>
+          <div class="deepdive-block-body">
+            <p>
+              Live takes precedence when active. Playlists and series carry the experience the rest of the time. <strong>Recommendations run alongside, tuned for sparse libraries</strong> — most churches have hundreds of items, not thousands, so the logic deprioritises freshness in favour of completeness.
+            </p>
+          </div>
+          <div class="deepdive-screens">
+            <div class="deepdive-screen span-desktop">
+              <div class="deepdive-screen-frame desktop">
+                <div class="img-placeholder">home page default.png</div>
+                <img src="assets/vod/home%20page%20default.png" alt="Resi On Demand desktop landing page" onerror="this.style.display='none'">
+              </div>
+              <span class="deepdive-screen-tag">Resi On Demand · Desktop</span>
+              <p class="deepdive-screen-caption">Live, playlists, and recommendations on one shelf.</p>
+            </div>
+            <div class="deepdive-screen span-mobile">
+              <div class="deepdive-screen-frame mobile">
+                <div class="img-placeholder">home page  default mobile.png</div>
+                <img src="assets/vod/home%20page%20%20default%20mobile.png" alt="Resi On Demand mobile landing page" onerror="this.style.display='none'">
+              </div>
+              <span class="deepdive-screen-tag">Resi On Demand · Mobile</span>
+              <p class="deepdive-screen-caption">Same hierarchy, restacked for thumb reach.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOCK 2 — SEARCH -->
+        <div class="deepdive-block">
+          <p class="deepdive-block-label">Surface 01 — Resi On Demand</p>
+          <h3 class="deepdive-block-title">Search results, not search misses.</h3>
+          <div class="deepdive-block-body">
+            <p>
+              Most viewers don't type full titles. Results prioritise partial matches across title, series, and tag. <strong>Tags surface near the content, not buried</strong> — admin-applied tags become congregant-discoverable filters in the same view.
+            </p>
+          </div>
+          <div class="deepdive-screens">
+            <div class="deepdive-screen span-desktop">
+              <div class="deepdive-screen-frame desktop">
+                <div class="img-placeholder">result page.png</div>
+                <img src="assets/vod/result%20page.png" alt="Resi On Demand desktop search results" onerror="this.style.display='none'">
+              </div>
+              <span class="deepdive-screen-tag">Resi On Demand · Desktop</span>
+              <p class="deepdive-screen-caption">Tag filters live alongside results — one view, no extra page.</p>
+            </div>
+            <div class="deepdive-screen span-mobile">
+              <div class="deepdive-screen-frame mobile">
+                <div class="img-placeholder">result page mobile.png</div>
+                <img src="assets/vod/result%20page%20mobile.png" alt="Resi On Demand mobile search results" onerror="this.style.display='none'">
+              </div>
+              <span class="deepdive-screen-tag">Resi On Demand · Mobile</span>
+              <p class="deepdive-screen-caption">Filters fold into the same scroll, not a separate flow.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOCK 3 — INSIDE CHURCH APP -->
+        <div class="deepdive-block">
+          <p class="deepdive-block-label">Surface 02 — Church App</p>
+          <h3 class="deepdive-block-title">Same content, native shell.</h3>
+          <div class="deepdive-block-body">
+            <p>
+              Resi On Demand inside the Church App had to feel native to the app, not like a webview dropped in. <strong>Players, controls, and navigation align with the rest of the Church App</strong> so congregants don't feel like they've left.
+            </p>
+          </div>
+          <div class="deepdive-screens dual-mobile">
+            <div class="deepdive-screen">
+              <div class="deepdive-screen-frame mobile">
+                <div class="img-placeholder">ChurchAppVoD Watching (1).png</div>
+                <img src="assets/vod/ChurchAppVoD%20Watching%20(1).png" alt="Church App Resi VoD watching state" onerror="this.style.display='none'">
+              </div>
+              <span class="deepdive-screen-tag">Church App · 01</span>
+              <p class="deepdive-screen-caption">Resi content, Church App chrome — same household.</p>
+            </div>
+            <div class="deepdive-screen">
+              <div class="deepdive-screen-frame mobile">
+                <div class="img-placeholder">ChurchAppVoD Watching (2).png</div>
+                <img src="assets/vod/ChurchAppVoD%20Watching%20(2).png" alt="Church App Resi VoD watching alternate state" onerror="this.style.display='none'">
+              </div>
+              <span class="deepdive-screen-tag">Church App · 02</span>
+              <p class="deepdive-screen-caption">Player + adjacent content laid out for in-app continuity.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOCK 4 — PATTERN -->
+        <div class="deepdive-block">
+          <p class="deepdive-block-label">Pattern worth noting</p>
+          <h3 class="deepdive-block-title">Two-sided design discipline.</h3>
+          <div class="deepdive-block-body">
+            <p>
+              Every end-user feature has an admin control upstream — a playlist someone built, a tag someone applied, a recommendation rule someone tuned. I designed the visible side, knowing the invisible one shapes every choice. <strong>The pattern: design for what the user does, while respecting what the admin needs to be able to do.</strong>
+            </p>
+          </div>
         </div>
       </div>
     </div>
