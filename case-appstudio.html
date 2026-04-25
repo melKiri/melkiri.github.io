@@ -421,14 +421,46 @@
     .studioc-block-body strong { color: var(--ink); font-weight: 500; }
     .studioc-block-body p + p { margin-top: 14px; }
 
+    /* Deep-dive break-out: screens go wider than body text */
+    #studioc-deep-dive .section-content { max-width: none; }
+    #studioc-deep-dive .section-heading,
+    #studioc-deep-dive .section-body,
+    #studioc-deep-dive .studioc-block-label,
+    #studioc-deep-dive .studioc-block-title,
+    #studioc-deep-dive .studioc-block-body,
+    #studioc-deep-dive .studioc-metric-grid,
+    #studioc-deep-dive .deepdive-breadcrumbs { max-width: 720px; }
+
+    /* Breadcrumbs */
+    .deepdive-breadcrumbs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-faint);
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .deepdive-breadcrumbs a {
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .deepdive-breadcrumbs a:hover { color: var(--ink); }
+    .deepdive-breadcrumbs span[aria-hidden] { color: var(--ink-faint); }
+    .deepdive-breadcrumbs .current { color: var(--ink); }
+
     .studioc-screens {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
       margin-top: 28px;
     }
 
-    .studioc-screens.admin { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+    .studioc-screens.admin { grid-template-columns: repeat(2, 1fr); }
 
     .studioc-screen {
       display: flex;
@@ -442,6 +474,8 @@
       aspect-ratio: 393 / 844;
       background: var(--surface-alt);
       border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
     }
 
     .studioc-screens.admin .studioc-screen-frame { aspect-ratio: 1440 / 1024; }
@@ -572,6 +606,10 @@
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
     /* RESPONSIVE */
+    @media (max-width: 1199px) {
+      .studioc-screens { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
       .case-hero { grid-template-columns: 1fr; gap: 40px; padding: 120px 24px 60px; }
@@ -582,6 +620,30 @@
       .outcome-grid { grid-template-columns: 1fr; }
       .studioc-metric-grid { grid-template-columns: 1fr; }
       .next-case { padding: 60px 24px; flex-direction: column; align-items: flex-start; }
+
+      /* Mobile carousel for deep-dive screens */
+      .studioc-screens {
+        display: flex;
+        grid-template-columns: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        margin-left: -24px;
+        margin-right: -24px;
+        padding: 4px 24px 16px 24px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+      }
+      .studioc-screens.admin { grid-template-columns: none; }
+      .studioc-screen {
+        flex: 0 0 70%;
+        min-width: 240px;
+        scroll-snap-align: start;
+      }
+      .studioc-screens.admin .studioc-screen {
+        flex: 0 0 85%;
+        min-width: 280px;
+      }
     }
   </style>
 </head>
@@ -813,6 +875,13 @@
     <div class="case-section fade-up" id="studioc-deep-dive">
       <p class="section-label">Deep-dive</p>
       <div class="section-content">
+        <nav class="deepdive-breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">All work</a>
+          <span aria-hidden="true">›</span>
+          <a href="#nav">App Studio</a>
+          <span aria-hidden="true">›</span>
+          <span class="current">Deep-dive: StudioC</span>
+        </nav>
         <h2 class="section-heading">StudioC, up close.<br><em>One feature, two user types, three measures of success.</em></h2>
         <div class="section-body">
           <p>
