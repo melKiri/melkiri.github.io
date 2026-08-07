@@ -580,6 +580,19 @@
     .case-hero-art .hero-ill { width: 82%; height: 82%; object-fit: contain; filter: drop-shadow(0 10px 24px rgba(21,34,41,0.12)); }
     .case-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 36px; align-items: start; padding: 36px max(48px, calc((100% - 1440px) / 2 + 48px)); border-bottom: 1px solid var(--line); }
     @media (max-width: 768px) { .case-hero-art { aspect-ratio: 16 / 10; } .case-meta { grid-template-columns: 1fr; gap: 26px; padding: 28px 24px; } }
+      .meta-tags { flex-direction: column; gap: 6px; margin-top: 8px; }
+    .meta-tags .tag { border: none; padding: 0; text-transform: none; letter-spacing: 0.01em; font-weight: 300; color: var(--ink-muted); display: flex; align-items: baseline; gap: 9px; line-height: 1.5; }
+    .meta-tags .tag::before { content: "\00B7"; color: var(--ink-faint); font-weight: 600; }
+    /* Stacked, expandable breakdown component */
+    .breakdown-grid { grid-template-columns: 1fr; }
+    .breakdown-item { cursor: pointer; transition: background 0.2s; }
+    .breakdown-item:hover { background: var(--surface-alt); }
+    .breakdown-item .breakdown-body { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; flex: none; }
+    .breakdown-item.is-open .breakdown-body { display: block; overflow: visible; }
+    .breakdown-item .breakdown-details { display: none; }
+    .breakdown-item.is-open .breakdown-details { display: flex; }
+    .breakdown-item::after { content: "Show more +"; margin-top: 14px; color: var(--accent); font-size: 14px; font-weight: 500; letter-spacing: 0.02em; }
+    .breakdown-item.is-open::after { content: "Show less \2212"; }
   </style>
 </head>
 <body>
@@ -963,6 +976,15 @@
       lb.addEventListener('click', function (e) { if (e.target !== lbImg) closeLb(); });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lb.classList.contains('open')) closeLb(); });
     })();
+  </script>
+  <script>
+    // Click-to-expand breakdown items
+    document.querySelectorAll('.breakdown-item').forEach(function (it) {
+      it.setAttribute('role', 'button');
+      it.setAttribute('tabindex', '0');
+      it.addEventListener('click', function () { it.classList.toggle('is-open'); });
+      it.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); it.classList.toggle('is-open'); } });
+    });
   </script>
 </body>
 </html>
