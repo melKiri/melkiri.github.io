@@ -6,18 +6,21 @@
   <title>Resi On Demand — Melanie Owubokiri</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --ink: #1a1916;
-      --ink-muted: #504f4a;
-      --ink-faint: #5a5955;
-      --surface: #f5f3ef;
-      --surface-alt: #edeae4;
-      --line: #d8d5cf;
-      --serif: 'DM Serif Display', Georgia, serif;
+      --ink: #1a1a2e;
+      --ink-muted: #4a4a63;
+      --ink-faint: #6b6b85;
+      --surface: #f5f6fa;
+      --surface-alt: #eceef5;
+      --card: #ffffff;
+      --accent: #6c5ce7;
+      --accent-soft: #ece9ff;
+      --line: #e4e6ee;
+      --serif: 'Fraunces', Georgia, serif;
       --sans: 'Inter', system-ui, sans-serif;
     }
 
@@ -564,6 +567,10 @@
         max-width: 520px;
       }
     }
+    .tag { border-radius: 4px; }
+    .btn-primary { border-radius: 6px; }
+    .hero-stats, .stats-bar, .work-grid { border-radius: 10px; overflow: hidden; }
+    .stat-item, .img-placeholder, .progress-track, .progress-fill, .deepdive-screen, .surface-item, .insight-item, .meta-block, .placeholder { border-radius: 6px; }
   </style>
 </head>
 <body>
@@ -581,23 +588,23 @@
         <em>Three surfaces.</em>
       </h1>
       <p class="case-subtitle">
-        Designing Resi On Demand end-to-end — from the viewing experience itself, to how it lives inside the Church App, to how admins configure it in App Studio. One product. Three audiences. No seams.
+        Designing Resi On Demand end-to-end — from the viewing experience itself, to how it lives inside the community app, to how admins configure it in App Studio. One product. Three audiences. No seams.
       </p>
     </div>
     <div class="case-meta">
       <div>
         <p class="meta-label">My role</p>
-        <p class="meta-value">UX Designer (UX2)<br>Sole designer across end-user experience, Church App integration, and App Studio admin configuration</p>
+        <p class="meta-value">UX Designer (UX2)<br>Sole designer across end-user experience, Community app integration, and App Studio admin configuration</p>
       </div>
       <div>
         <p class="meta-label">Teams collaborated with</p>
-        <p class="meta-value">Resi Product & Engineering · App Studio Engineering · Church App team</p>
+        <p class="meta-value">Resi Product & Engineering · App Studio Engineering · community app team</p>
       </div>
       <div>
         <p class="meta-label">Surfaces designed</p>
         <div class="meta-tags">
           <span class="tag">Resi On Demand (end-user)</span>
-          <span class="tag">Church App integration</span>
+          <span class="tag">Community app integration</span>
           <span class="tag">App Studio (admin)</span>
         </div>
       </div>
@@ -613,17 +620,17 @@
     <div class="surface-item fade-up">
       <p class="surface-num">Surface 01</p>
       <h3 class="surface-name">Resi On Demand</h3>
-      <p class="surface-desc">The viewing experience — browsing, playlists, on-demand content for end users (congregants)</p>
+      <p class="surface-desc">The viewing experience — browsing, playlists, on-demand content for end users (members)</p>
     </div>
     <div class="surface-item fade-up">
       <p class="surface-num">Surface 02</p>
-      <h3 class="surface-name">Church App</h3>
-      <p class="surface-desc">How Resi On Demand is embedded and experienced within the Church App ecosystem</p>
+      <h3 class="surface-name">community app</h3>
+      <p class="surface-desc">How Resi On Demand is embedded and experienced within the community app ecosystem</p>
     </div>
     <div class="surface-item fade-up">
       <p class="surface-num">Surface 03</p>
       <h3 class="surface-name">App Studio</h3>
-      <p class="surface-desc">How church admins configure, connect, and embed the Resi media library into their app</p>
+      <p class="surface-desc">How community admins configure, connect, and embed the Resi media library into their app</p>
     </div>
   </div>
 
@@ -633,19 +640,19 @@
     <div class="case-section fade-up">
       <p class="section-label">The brief</p>
       <div class="section-content">
-        <h2 class="section-heading">A Netflix-style media library.<br><em>Built for the church context.</em></h2>
+        <h2 class="section-heading">A Netflix-style media library.<br><em>Built into white-label community apps.</em></h2>
         <div class="section-body">
           <p>
-            Resi is Pushpay's live streaming and video product — a separate platform with its own team, design system, and roadmap. The opportunity: an on-demand content experience that let churches offer congregants a branded, distraction-free place to watch past services, sermon series, and media.
+            Resi is Pushpay's live streaming and video product — a separate platform with its own team, design system, and roadmap. The opportunity: an on-demand content experience that let communities offer members a branded, distraction-free place to watch past broadcasts, series, and media.
           </p>
           <p>
-            The challenge wasn't building a media player. It was designing an experience that felt <strong>native across three very different surfaces</strong> — a standalone product (Resi On Demand / Media Sites), an embedded feature inside the Church App, and an admin configuration flow inside App Studio.
+            The challenge wasn't building a media player. It was designing an experience that felt <strong>native across three very different surfaces</strong> — a standalone product (Resi On Demand / Media Sites), an embedded feature inside the community app, and an admin configuration flow inside App Studio.
           </p>
           <div class="callout">
             <p>"No redirects. No competing algorithms. No distractions. One destination where your audience can watch live and explore past content — all in one place."</p>
           </div>
           <p>
-            I was the sole designer on the end-user experience — working directly with the Resi product and engineering team, while continuing my work in App Studio and the Church App.
+            I was the sole designer on the end-user experience — working directly with the Resi product and engineering team, while continuing my work in App Studio and the community app.
           </p>
         </div>
         <a href="https://resi.io/resi-on-demand/" target="_blank" class="external-link">View Resi On Demand live ↗</a>
@@ -669,7 +676,7 @@
             <p class="breakdown-tag">Surface 01 · End user</p>
             <h3 class="breakdown-title">Resi On Demand</h3>
             <p class="breakdown-body">
-              The core viewing experience for congregants. A branded, searchable content library where live streams auto-save and on-demand content is organised into playlists and series. Designed to feel familiar — like a streaming service — while remaining distraction-free and entirely owned by the church.
+              The core viewing experience for members. A branded, searchable content library where live streams auto-save and on-demand content is organised into playlists and series. Designed to feel familiar — like a streaming service — while remaining distraction-free and entirely owned by the community.
             </p>
             <ul class="breakdown-details">
               <li>Browse, discover, and watch on-demand content</li>
@@ -680,13 +687,13 @@
           </div>
 
           <div class="breakdown-item">
-            <p class="breakdown-tag">Surface 02 · Church App</p>
+            <p class="breakdown-tag">Surface 02 · community app</p>
             <h3 class="breakdown-title">In-app integration</h3>
             <p class="breakdown-body">
-              How Resi On Demand lives inside the Church App. The challenge: integration without the seam showing. Content needed to feel native to the app — not a webview dropped in. Congregants shouldn't feel like they've left the app to watch a video.
+              How Resi On Demand lives inside the community app. The challenge: integration without the seam showing. Content needed to feel native to the app — not a webview dropped in. Members shouldn't feel like they've left the app to watch a video.
             </p>
             <ul class="breakdown-details">
-              <li>Seamless embed within Church App navigation</li>
+              <li>Seamless embed within community app navigation</li>
               <li>Consistent visual language across both products</li>
               <li>Minimal friction from app to content</li>
             </ul>
@@ -696,7 +703,7 @@
             <p class="breakdown-tag">Surface 03 · Admin</p>
             <h3 class="breakdown-title">App Studio config</h3>
             <p class="breakdown-body">
-              The admin-facing configuration flow — how church admins connect their Resi account, set up their media library, and embed it. Close collaboration with App Studio engineering kept the flow clear enough for non-technical admins to complete without support.
+              The admin-facing configuration flow — how community admins connect their Resi account, set up their media library, and embed it. Close collaboration with App Studio engineering kept the flow clear enough for non-technical admins to complete without support.
             </p>
             <ul class="breakdown-details">
               <li>Resi account connection and authentication</li>
@@ -723,15 +730,15 @@
         <div class="insight-list">
           <div class="insight-item">
             <div class="insight-num">01</div>
-            <div class="insight-text"><strong>Two design systems, one coherent experience.</strong> Resi had its own visual language. The Church App had Prism. The integration had to feel native in both without creating a third, undefined aesthetic.</div>
+            <div class="insight-text"><strong>Two design systems, one coherent experience.</strong> Resi had its own visual language. The community app had Prism. The integration had to feel native in both without creating a third, undefined aesthetic.</div>
           </div>
           <div class="insight-item">
             <div class="insight-num">02</div>
-            <div class="insight-text"><strong>Different users, shared content.</strong> Admins configure what congregants see. Every admin decision has a direct end-user consequence — which meant designing both sides with that dependency always in mind.</div>
+            <div class="insight-text"><strong>Different users, shared content.</strong> Admins configure what members see. Every admin decision has a direct end-user consequence — which meant designing both sides with that dependency always in mind.</div>
           </div>
           <div class="insight-item">
             <div class="insight-num">03</div>
-            <div class="insight-text"><strong>Familiar but not generic.</strong> The "Netflix-style" reference set expectations. The design needed to feel intuitive — leveraging familiar patterns — without looking like it was just copying a consumer streaming app for a church context.</div>
+            <div class="insight-text"><strong>Familiar but not generic.</strong> The "Netflix-style" reference set expectations. The design needed to feel intuitive — leveraging familiar patterns — without looking like it was just copying a consumer streaming app for a community context.</div>
           </div>
         </div>
       </div>
@@ -751,10 +758,10 @@
         <h2 class="section-heading">Resi On Demand, up close.<br><em>The end-user surfaces I designed across two products.</em></h2>
         <div class="section-body">
           <p>
-            Resi sat with its own team, design system, and roadmap. My remit was the <strong>end-user side</strong> of two surfaces — the standalone Resi On Demand product, and how that experience lived inside the Church App. Five features anchored the work: playlists, live, search, tags, and recommendations.
+            Resi sat with its own team, design system, and roadmap. My remit was the <strong>end-user side</strong> of two surfaces — the standalone Resi On Demand product, and how that experience lived inside the community app. Five features anchored the work: playlists, live, search, tags, and recommendations.
           </p>
           <div class="callout">
-            <p>"What admins curate upstream becomes what congregants browse, search, and play."</p>
+            <p>"What admins curate upstream becomes what members browse, search, and play."</p>
           </div>
         </div>
 
@@ -764,7 +771,7 @@
           <h3 class="deepdive-block-title">Landing built for short attention.</h3>
           <div class="deepdive-block-body">
             <p>
-              Live takes precedence when active. Playlists and series carry the experience the rest of the time. <strong>Recommendations run alongside, tuned for sparse libraries</strong> — most churches have hundreds of items, not thousands, so the logic deprioritises freshness in favour of completeness.
+              Live takes precedence when active. Playlists and series carry the experience the rest of the time. <strong>Recommendations run alongside, tuned for sparse libraries</strong> — most communities have hundreds of items, not thousands, so the logic deprioritises freshness in favour of completeness.
             </p>
           </div>
           <div class="deepdive-screens">
@@ -793,7 +800,7 @@
           <h3 class="deepdive-block-title">Search results, not search misses.</h3>
           <div class="deepdive-block-body">
             <p>
-              Most viewers don't type full titles. Results prioritise partial matches across title, series, and tag. <strong>Tags surface near the content, not buried</strong> — admin-applied tags become congregant-discoverable filters in the same view.
+              Most viewers don't type full titles. Results prioritise partial matches across title, series, and tag. <strong>Tags surface near the content, not buried</strong> — admin-applied tags become member-discoverable filters in the same view.
             </p>
           </div>
           <div class="deepdive-screens">
@@ -816,30 +823,30 @@
           </div>
         </div>
 
-        <!-- BLOCK 3 — INSIDE CHURCH APP -->
+        <!-- BLOCK 3 — INSIDE COMMUNITY APP -->
         <div class="deepdive-block">
-          <p class="deepdive-block-label">Surface 02 — Church App</p>
+          <p class="deepdive-block-label">Surface 02 — community app</p>
           <h3 class="deepdive-block-title">Same content, native shell.</h3>
           <div class="deepdive-block-body">
             <p>
-              Resi On Demand inside the Church App had to feel native to the app, not like a webview dropped in. <strong>Players, controls, and navigation align with the rest of the Church App</strong> so congregants don't feel like they've left.
+              Resi On Demand inside the community app had to feel native to the app, not like a webview dropped in. <strong>Players, controls, and navigation align with the rest of the community app</strong> so members don't feel like they've left.
             </p>
           </div>
           <div class="deepdive-screens dual-mobile">
             <div class="deepdive-screen">
               <div class="deepdive-screen-frame mobile">
-                <div class="img-placeholder">ChurchAppVoD Watching (1).png</div>
-                <img src="assets/vod/ChurchAppVoD%20Watching%20(1).png" alt="Church App Resi VoD watching state" onerror="this.style.display='none'">
+                <div class="img-placeholder">Watching state · 01</div>
+                <img src="assets/vod/ChurchAppVoD%20Watching%20(1).png" alt="community app Resi VoD watching state" onerror="this.style.display='none'">
               </div>
-              <span class="deepdive-screen-tag">Church App · 01</span>
-              <p class="deepdive-screen-caption">Resi content, Church App chrome — same household.</p>
+              <span class="deepdive-screen-tag">community app · 01</span>
+              <p class="deepdive-screen-caption">Resi content, community app chrome — same household.</p>
             </div>
             <div class="deepdive-screen">
               <div class="deepdive-screen-frame mobile">
-                <div class="img-placeholder">ChurchAppVoD Watching (2).png</div>
-                <img src="assets/vod/ChurchAppVoD%20Watching%20(2).png" alt="Church App Resi VoD watching alternate state" onerror="this.style.display='none'">
+                <div class="img-placeholder">Watching state · 02</div>
+                <img src="assets/vod/ChurchAppVoD%20Watching%20(2).png" alt="community app Resi VoD watching alternate state" onerror="this.style.display='none'">
               </div>
-              <span class="deepdive-screen-tag">Church App · 02</span>
+              <span class="deepdive-screen-tag">community app · 02</span>
               <p class="deepdive-screen-caption">Player + adjacent content laid out for in-app continuity.</p>
             </div>
           </div>
@@ -865,10 +872,10 @@
         <h2 class="section-heading">Live, branded,<br><em>distraction-free.</em></h2>
         <div class="section-body">
           <p>
-            Resi On Demand shipped as a fully branded, searchable content destination — live and on-demand unified in one place. Churches could offer their congregants a streaming experience they owned entirely, without competing algorithms or third-party interference.
+            Resi On Demand shipped as a fully branded, searchable content destination — live and on-demand unified in one place. Communities could offer their members a streaming experience they owned entirely, without competing algorithms or third-party interference.
           </p>
           <p>
-            The Church App integration brought that experience into the app congregants already used for giving, groups, and events — making media part of the community experience, not a separate destination.
+            The Community app integration brought that experience into the app members already used for giving, groups, and events — making media part of the community experience, not a separate destination.
           </p>
           <p>
             The App Studio configuration flow gave admins a clear, self-serve path to set up and embed their media library — removing dependency on support for what should be a simple task.
