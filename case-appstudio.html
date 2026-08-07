@@ -689,7 +689,7 @@
       <input id="pw-input" type="password" placeholder="Enter password" autocomplete="off"/>
       <p id="pw-error">Incorrect password. Please try again.</p>
       <button id="pw-btn">View case study</button>
-      <a id="pw-back" href="index.html" style="display:block;margin-top:16px;font-size:12px;font-weight:300;color:#585870;text-decoration:none;">&larr; Back to home</a>
+      <a id="pw-back" href="index.html" onclick="if(history.length>1){history.back();return false;}" style="display:block;margin-top:16px;font-size:12px;font-weight:300;color:#585870;text-decoration:none;">&larr; Back</a>
     </div>
   `;
   document.body.appendChild(overlay);
