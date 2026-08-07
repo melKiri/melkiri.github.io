@@ -44,7 +44,7 @@
 /* --- Bordered containers: one shared corner radius ---
    Any bordered table/grid/card/frame rounds to --radius and clips its
    inner hairline cells, so the whole site matches the hero. */
-.hero-stats, .stats-bar, .surfaces-bar, .work-grid, .work-card, .work-categories,
+.hero-stats, .stats-bar, .surfaces-bar, .work-card, .work-categories,
 .timeline, .compare-grid, .features-grid, .breakdown-grid, .toolkit, .data-table,
 .impossible-grid, .outcome-grid, .phase-status, .principles, .detail-item,
 .studioc-metric-grid, .studioc-screen-frame, .deepdive-screen-frame, .case-hero-art {
