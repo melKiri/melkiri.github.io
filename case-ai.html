@@ -479,6 +479,11 @@
     .stat-item, .img-placeholder, .progress-track, .progress-fill, .deepdive-screen, .surface-item, .insight-item, .meta-block, .placeholder { border-radius: 6px; }
     a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     @media (max-width: 768px) { .case-section { grid-template-columns: 1fr; gap: 32px; } }
+      .case-hero { align-items: center; }
+    .case-hero-art { background: var(--accent-soft); border-radius: 16px; aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .case-hero-art .hero-ill { width: 82%; height: 82%; object-fit: contain; filter: drop-shadow(0 10px 24px rgba(21,34,41,0.12)); }
+    .case-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 36px; align-items: start; padding: 36px max(48px, calc((100% - 1440px) / 2 + 48px)); border-bottom: 1px solid var(--line); }
+    @media (max-width: 768px) { .case-hero-art { aspect-ratio: 16 / 10; } .case-meta { grid-template-columns: 1fr; gap: 26px; padding: 28px 24px; } }
   </style>
 </head>
 <body>
@@ -492,14 +497,17 @@
     <div>
       <p class="case-eyebrow"><span></span> Pushpay · 2024–present</p>
       <h1 class="case-title">
-        Not faster.<br>
-        <em>Finally possible.</em>
+        AI workflow:<br>
+        <em>work that couldn't be justified, now possible</em>
       </h1>
       <p class="case-subtitle">
         The real value of AI in design systems isn't speed. It unlocks work that could never be justified before: audits too large to run, documentation that never got written, debt that piled up because fixing it properly would take weeks nobody had.
       </p>
     </div>
-    <div class="case-meta">
+    <div class="case-hero-art"><img class="hero-ill" src="assets/illustrations/ai.webp" alt="" loading="lazy"></div>
+  </header>
+
+  <div class="case-meta">
       <div>
         <p class="meta-label">My role</p>
         <p class="meta-value">Senior UX Designer · Design System Lead<br>Sole architect of the AI-augmented DS workflow</p>
@@ -522,7 +530,6 @@
         <p class="meta-value">Test → validate → run once a human is no longer needed</p>
       </div>
     </div>
-  </header>
 
   <!-- STATS -->
   <div class="stats-bar">
@@ -726,6 +733,7 @@
 
   <footer style="padding: 24px max(48px, calc((100% - 1440px) / 2 + 48px)); border-top: 1px solid var(--line); display: flex; justify-content: space-between;">
     <span style="font-size: 12px; font-weight: 300; color: var(--ink-faint);">© Melanie Owubokiri 2026</span>
+    <a href="https://icons8.com" target="_blank" rel="noopener" style="font-size:12px;font-weight:300;color:var(--ink-faint);text-decoration:none;">Illustrations by Icons8</a>
     <a href="index.html" style="font-size: 12px; font-weight: 300; color: var(--ink-faint); text-decoration: none;">Back to home</a>
   </footer>
 

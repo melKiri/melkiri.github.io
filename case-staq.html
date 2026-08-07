@@ -507,6 +507,11 @@
     .stat-item, .img-placeholder, .progress-track, .progress-fill, .deepdive-screen, .surface-item, .insight-item, .meta-block, .placeholder { border-radius: 6px; }
     a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     @media (max-width: 768px) { .case-section { grid-template-columns: 1fr; gap: 32px; } }
+      .case-hero { align-items: center; }
+    .case-hero-art { background: var(--accent-soft); border-radius: 16px; aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .case-hero-art .hero-ill { width: 82%; height: 82%; object-fit: contain; filter: drop-shadow(0 10px 24px rgba(21,34,41,0.12)); }
+    .case-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 36px; align-items: start; padding: 36px max(48px, calc((100% - 1440px) / 2 + 48px)); border-bottom: 1px solid var(--line); }
+    @media (max-width: 768px) { .case-hero-art { aspect-ratio: 16 / 10; } .case-meta { grid-template-columns: 1fr; gap: 26px; padding: 28px 24px; } }
   </style>
 </head>
 <body>
@@ -538,6 +543,7 @@
       <input id="pw-input" type="password" placeholder="Enter password" autocomplete="off"/>
       <p id="pw-error">Incorrect password. Please try again.</p>
       <button id="pw-btn">View case study</button>
+      <a id="pw-back" href="index.html" style="display:block;margin-top:16px;font-size:12px;font-weight:300;color:#585870;text-decoration:none;">&larr; Back to home</a>
     </div>
   `;
   document.body.appendChild(overlay);
@@ -570,15 +576,17 @@
     <div>
       <p class="case-eyebrow"><span></span> Pushpay · 2022–present · NDA</p>
       <h1 class="case-title">
-        A system built<br>
-        <em>across years,</em><br>
-        not sprints.
+        Design system:<br>
+        <em>one system across all 7 products</em>
       </h1>
       <p class="case-subtitle">
         How Pushpay's design system went from fragmented product libraries to one scalable ecosystem, after a board review of a single page triggered a full modernisation.
       </p>
     </div>
-    <div class="case-meta">
+    <div class="case-hero-art"><img class="hero-ill" src="assets/illustrations/design-system.webp" alt="" loading="lazy"></div>
+  </header>
+
+  <div class="case-meta">
       <div>
         <p class="meta-label">My role</p>
         <p class="meta-value">UX Designer → Senior UX Designer → Design System Lead<br>Owner of Figma library architecture, the token system, and DS governance. Partner to engineering on Storybook parity.</p>
@@ -599,7 +607,6 @@
         </div>
       </div>
     </div>
-  </header>
 
   <!-- STATS -->
   <div class="stats-bar">
@@ -883,6 +890,7 @@
 
   <footer style="padding: 24px max(48px, calc((100% - 1440px) / 2 + 48px)); border-top: 1px solid var(--line); display: flex; justify-content: space-between;">
     <span style="font-size: 13px; font-weight: 300; color: var(--ink-faint);">© Melanie Owubokiri 2026</span>
+    <a href="https://icons8.com" target="_blank" rel="noopener" style="font-size:12px;font-weight:300;color:var(--ink-faint);text-decoration:none;">Illustrations by Icons8</a>
     <a href="index.html" style="font-size: 13px; font-weight: 300; color: var(--ink-faint); text-decoration: none;">Back to home</a>
   </footer>
 
