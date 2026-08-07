@@ -516,17 +516,17 @@
   overlay.id = "pw-overlay";
   overlay.innerHTML = `
     <style>
-      #pw-overlay { position:fixed;inset:0;z-index:9999;background:#f5f3ef;display:flex;align-items:center;justify-content:center;font-family:'Inter',system-ui,sans-serif; }
-      #pw-box { width:100%;max-width:360px;padding:48px 40px;border:1px solid #d8d5cf;background:#f5f3ef;display:flex;flex-direction:column;gap:24px; }
-      #pw-title { font-family:'DM Serif Display',Georgia,serif;font-size:24px;line-height:1.15;color:#1a1916; }
-      #pw-title em { font-style:italic;color:#504f4a; }
-      #pw-note { font-size:13px;font-weight:300;color:#504f4a;line-height:1.6; }
-      #pw-input { width:100%;padding:12px 16px;font-size:14px;font-weight:300;color:#1a1916;background:#edeae4;border:1px solid #d8d5cf;outline:none;transition:border-color 0.2s; }
-      #pw-input:focus { border-color:#1a1916; }
-      #pw-input.error { border-color:#c0392b; }
-      #pw-btn { padding:12px 24px;background:#1a1916;color:#f5f3ef;font-size:13px;font-weight:500;letter-spacing:0.04em;border:1px solid #1a1916;cursor:pointer;transition:background 0.2s,color 0.2s; }
-      #pw-btn:hover { background:transparent;color:#1a1916; }
-      #pw-error { font-size:12px;font-weight:300;color:#c0392b;display:none; }
+      #pw-overlay { position:fixed;inset:0;z-index:9999;background:#f5f6fa;display:flex;align-items:center;justify-content:center;font-family:'Inter',system-ui,sans-serif; }
+      #pw-box { width:100%;max-width:360px;padding:48px 40px;border:1px solid #e4e6ee;border-radius:16px;background:#ffffff;display:flex;flex-direction:column;gap:24px; }
+      #pw-title { font-family:'Fraunces',Georgia,serif;font-size:24px;line-height:1.15;color:#1a1a2e; }
+      #pw-title em { font-style:italic;color:#4a4a63; }
+      #pw-note { font-size:13px;font-weight:300;color:#4a4a63;line-height:1.6; }
+      #pw-input { width:100%;padding:12px 16px;font-size:14px;font-weight:300;color:#1a1a2e;background:#f5f6fa;border:1px solid #e4e6ee;border-radius:6px;outline:none;transition:border-color 0.2s; }
+      #pw-input:focus { border-color:#6c5ce7; }
+      #pw-input.error { border-color:#e24b4a; }
+      #pw-btn { padding:12px 24px;background:#6c5ce7;color:#ffffff;font-size:13px;font-weight:500;letter-spacing:0.04em;border:1px solid #6c5ce7;border-radius:6px;cursor:pointer;transition:background 0.2s,color 0.2s; }
+      #pw-btn:hover { background:transparent;color:#6c5ce7; }
+      #pw-error { font-size:12px;font-weight:300;color:#e24b4a;display:none; }
     </style>
     <div id="pw-box">
       <h1 id="pw-title">This work is<br><em>password protected.</em></h1>
