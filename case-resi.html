@@ -9,22 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/design-system.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --ink: #1a1a2e;
-      --ink-muted: #4a4a63;
-      --ink-faint: #585870;
-      --surface: #f5f6fa;
-      --surface-alt: #eceef5;
-      --card: #ffffff;
-      --accent: #0f7078;
-      --accent-soft: #e2efee;
-      --line: #e4e6ee;
-      --serif: 'Fraunces', Georgia, serif;
-      --sans: 'General Sans', system-ui, sans-serif;
-    }
 
     html { font-size: 16px; }
 
@@ -576,7 +564,7 @@
     a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     @media (max-width: 768px) { .case-section { grid-template-columns: 1fr; gap: 32px; } }
       .case-hero { align-items: center; }
-    .case-hero-art { background: var(--accent-soft); border-radius: 16px; aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .case-hero-art { background: var(--accent-soft); border-radius: var(--radius); aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; overflow: hidden; }
     .case-hero-art .hero-ill { width: 82%; height: 82%; object-fit: contain; filter: drop-shadow(0 10px 24px rgba(21,34,41,0.12)); }
     .case-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 36px; align-items: start; padding: 36px max(48px, calc((100% - 1440px) / 2 + 48px)); border-bottom: 1px solid var(--line); }
     @media (max-width: 768px) { .case-hero-art { aspect-ratio: 16 / 10; } .case-meta { grid-template-columns: 1fr; gap: 26px; padding: 28px 24px; } }

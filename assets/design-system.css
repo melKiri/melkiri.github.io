@@ -1,0 +1,71 @@
+/* ============================================================
+   Melanie Owubokiri — Portfolio Design System
+   ------------------------------------------------------------
+   Single source of truth. Linked by every page BEFORE its own
+   inline <style>, so tokens defined here cascade everywhere and
+   page-specific styles can still override when needed.
+
+   Phase 1: foundation + tokens.
+   (Shared components move here next — see DESIGN-SYSTEM.md.)
+   ============================================================ */
+
+/* --- Reset --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* --- Design tokens ---
+   Change a value here and it updates across the whole site.
+   Named to echo Figma variable conventions (semantic, not raw). */
+:root {
+  /* Ink (text) */
+  --ink: #1a1a2e;
+  --ink-muted: #4a4a63;
+  --ink-faint: #585870;
+
+  /* Surfaces */
+  --surface: #f5f6fa;
+  --surface-alt: #eceef5;
+  --card: #ffffff;
+
+  /* Accent (reserve for CTAs, links, focus) */
+  --accent: #0f7078;
+  --accent-soft: #e2efee;
+
+  /* Lines */
+  --line: #e4e6ee;
+
+  /* Radius — every bordered container uses this (matches the hero) */
+  --radius: 10px;
+
+  /* Type families */
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'General Sans', system-ui, sans-serif;
+}
+
+/* --- Bordered containers: one shared corner radius ---
+   Any bordered table/grid/card/frame rounds to --radius and clips its
+   inner hairline cells, so the whole site matches the hero. */
+.hero-stats, .stats-bar, .surfaces-bar, .work-grid, .work-card, .work-categories,
+.timeline, .compare-grid, .features-grid, .breakdown-grid, .toolkit, .data-table,
+.impossible-grid, .outcome-grid, .phase-status, .principles, .detail-item,
+.studioc-metric-grid, .studioc-screen-frame, .deepdive-screen-frame, .case-hero-art {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* --- Base --- */
+html { font-size: 16px; }
+body {
+  font-family: var(--sans);
+  background: var(--surface);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* --- Accessible focus (WCAG 2.4.7) --- */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
