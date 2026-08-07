@@ -6,19 +6,21 @@
   <title>Melanie Owubokiri — Senior UX Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --ink: #1a1916;
-      --ink-muted: #504f4a;
-      --ink-faint: #5a5955;
-      --surface: #f5f3ef;
-      --surface-alt: #edeae4;
-      --accent: #1a1916;
-      --line: #d8d5cf;
-      --serif: 'DM Serif Display', Georgia, serif;
+      --ink: #1a1a2e;
+      --ink-muted: #4a4a63;
+      --ink-faint: #6b6b85;
+      --surface: #f5f6fa;
+      --surface-alt: #eceef5;
+      --card: #ffffff;
+      --accent: #6c5ce7;
+      --accent-soft: #ece9ff;
+      --line: #e4e6ee;
+      --serif: 'Fraunces', Georgia, serif;
       --sans: 'Inter', system-ui, sans-serif;
     }
 
@@ -146,6 +148,7 @@
       letter-spacing: 0.04em;
       text-decoration: none;
       border: 1px solid var(--ink);
+      border-radius: 6px;
       transition: background 0.2s, color 0.2s;
     }
     .btn-primary:hover {
@@ -169,7 +172,7 @@
       padding: 80px 48px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: center;
     }
 
     .hero-stats {
@@ -233,10 +236,6 @@
       border: 1px solid var(--line);
     }
 
-    .work-card:nth-child(5) {
-      grid-column: 1 / -1;
-    }
-
     .work-card {
       background: var(--surface);
       padding: 40px;
@@ -271,6 +270,7 @@
       color: var(--ink-muted);
       border: 1px solid var(--line);
       padding: 3px 8px;
+      border-radius: 4px;
     }
 
     .tag.nda {
@@ -443,6 +443,44 @@
       .contact-links { align-items: flex-start; }
       footer { padding: 20px 24px; flex-direction: column; gap: 8px; align-items: flex-start; }
     }
+    .work-grid { grid-template-columns: 1fr 1fr; gap: 20px; background: none; border: none; }
+    .work-card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 0; gap: 0; overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .work-card:hover {
+      background: var(--card); transform: translateY(-3px);
+      border-color: var(--accent); box-shadow: 0 8px 26px rgba(108,92,231,0.12);
+    }
+    .work-thumb {
+      position: relative; aspect-ratio: 16 / 6.5;
+      display: flex; align-items: center; justify-content: center;
+      background-color: var(--accent-soft);
+      background-image: radial-gradient(rgba(108,92,231,0.16) 1px, transparent 1px);
+      background-size: 18px 18px; background-position: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .work-thumb .work-card-top { position: absolute; top: 12px; left: 12px; right: 12px; }
+    .work-thumb .tag {
+      background: rgba(255,255,255,0.9); border: none; color: #43436a;
+      -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    }
+    .work-thumb .work-arrow {
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.9); color: var(--accent); font-size: 15px;
+    }
+    .work-card:hover .work-arrow { transform: translate(3px, -3px); color: var(--accent); }
+    .work-body { padding: 22px 26px 26px; display: flex; flex-direction: column; gap: 10px; }
+    .work-title { font-size: 22px; }
+    .work-desc { font-size: 14px; color: var(--ink-muted); line-height: 1.5; }
+    .work-metric { font-size: 12px; color: var(--accent); }
+    .ph-mark { font-family:var(--serif); font-size:38px; color:rgba(108,92,231,0.32); }
+    .tag { border-radius: 4px; }
+    .btn-primary { border-radius: 6px; }
+    .hero-stats, .stats-bar, .work-grid { border-radius: 10px; overflow: hidden; }
+    .stat-item, .img-placeholder, .progress-track, .progress-fill, .deepdive-screen, .surface-item, .insight-item, .meta-block, .placeholder { border-radius: 6px; }
   </style>
 </head>
 <body>
@@ -503,68 +541,93 @@
     <div class="work-grid">
 
       <a href="case-staq.html" class="work-card fade-up">
-        <div class="work-card-top">
-          <div class="work-tags">
-            <span class="tag">Design Systems</span>
-            <span class="tag nda">NDA · Pushpay</span>
+        <div class="work-thumb">
+          <span class="ph-mark">DS</span>
+          <div class="work-card-top">
+            <div class="work-tags">
+              <span class="tag">Design Systems</span>
+              <span class="tag nda">NDA · Pushpay</span>
+            </div>
+            <span class="work-arrow">↗</span>
           </div>
-          <span class="work-arrow">↗</span>
         </div>
-        <h2 class="work-title">A system built across years, not sprints</h2>
-        <p class="work-desc">How Pushpay's design system evolved from fragmented product libraries into a unified ecosystem — and how a board meeting became the catalyst for modernising everything.</p>
-        <p class="work-metric">4 libraries → 1 · 30+ variants → 1 · 17k variables · 7 products</p>
+        <div class="work-body">
+          <h2 class="work-title">Design system: one system across all seven products</h2>
+          <p class="work-desc">Fragmented product libraries unified into a single tokenised ecosystem.</p>
+          <p class="work-metric">From 4 libraries to 1, supporting 8 products</p>
+        </div>
       </a>
 
       <a href="case-ai.html" class="work-card fade-up">
-        <div class="work-card-top">
-          <div class="work-tags">
-            <span class="tag">AI Workflows</span>
-            <span class="tag">Systems</span>
+        <div class="work-thumb">
+          <span class="ph-mark">AI</span>
+          <div class="work-card-top">
+            <div class="work-tags">
+              <span class="tag">AI Workflows</span>
+              <span class="tag">Systems</span>
+            </div>
+            <span class="work-arrow">↗</span>
           </div>
-          <span class="work-arrow">↗</span>
         </div>
-        <h2 class="work-title">Not faster. Finally possible.</h2>
-        <p class="work-desc">Building an AI-augmented DS workflow that unlocked work that couldn't be justified before — audits too large to run, documentation never written, debt that kept growing.</p>
-        <p class="work-metric">88% faster migration · 92% faster docs · 17k variables in one day</p>
+        <div class="work-body">
+          <h2 class="work-title">AI workflow: work that couldn't be justified, now possible</h2>
+          <p class="work-desc">An AI-augmented DS pipeline for audits, docs, and migrations at scale.</p>
+          <p class="work-metric">88% faster migration · 92% faster docs · 17k variables in a day</p>
+        </div>
       </a>
 
       <a href="case-appstudio.html" class="work-card fade-up">
-        <div class="work-card-top">
-          <div class="work-tags">
-            <span class="tag">Product UX</span>
-            <span class="tag nda">NDA · Pushpay</span>
+        <div class="work-thumb">
+          <span class="ph-mark">AS</span>
+          <div class="work-card-top">
+            <div class="work-tags">
+              <span class="tag">Product UX</span>
+              <span class="tag nda">NDA · Pushpay</span>
+            </div>
+            <span class="work-arrow">↗</span>
           </div>
-          <span class="work-arrow">↗</span>
         </div>
-        <h2 class="work-title">Building in one product. Learning the whole ecosystem.</h2>
-        <p class="work-desc">Two years in App Studio — designing across StudioC, Events, and Church App while building the cross-product literacy that now drives DS leadership.</p>
-        <p class="work-metric">4 product teams · 6 features shipped · 2 user types</p>
+        <div class="work-body">
+          <h2 class="work-title">App Studio: one product connecting the whole ecosystem</h2>
+          <p class="work-desc">A white-label B2B2C platform letting churches build trusted apps for their communities.</p>
+          <p class="work-metric">4 product teams · 6 features shipped · 2 user types</p>
+        </div>
       </a>
 
       <a href="case-resi.html" class="work-card fade-up">
-        <div class="work-card-top">
-          <div class="work-tags">
-            <span class="tag">Product UX</span>
-            <span class="tag">Media</span>
+        <div class="work-thumb">
+          <span class="ph-mark">ROD</span>
+          <div class="work-card-top">
+            <div class="work-tags">
+              <span class="tag">Product UX</span>
+              <span class="tag">Media</span>
+            </div>
+            <span class="work-arrow">↗</span>
           </div>
-          <span class="work-arrow">↗</span>
         </div>
-        <h2 class="work-title">One experience. Three surfaces.</h2>
-        <p class="work-desc">Sole designer on Resi On Demand — the end-user viewing experience, the Church App integration, and the App Studio admin configuration. One product, no seams.</p>
-        <p class="work-metric">Resi × Pushpay · Shipped · Live</p>
+        <div class="work-body">
+          <h2 class="work-title">Resi On Demand: streaming built into white-label community apps</h2>
+          <p class="work-desc">The on-demand video layer inside the branded apps communities build in App Studio.</p>
+          <p class="work-metric">Resi × Pushpay · Shipped · Live</p>
+        </div>
       </a>
 
       <a href="case-giving.html" class="work-card fade-up">
-        <div class="work-card-top">
-          <div class="work-tags">
-            <span class="tag">AI · Data UX</span>
-            <span class="tag nda">NDA · Pushpay</span>
+        <div class="work-thumb">
+          <span class="ph-mark">GA</span>
+          <div class="work-card-top">
+            <div class="work-tags">
+              <span class="tag">AI · Data UX</span>
+              <span class="tag nda">NDA · Pushpay</span>
+            </div>
+            <span class="work-arrow">↗</span>
           </div>
-          <span class="work-arrow">↗</span>
         </div>
-        <h2 class="work-title">Making data speak plainly.</h2>
-        <p class="work-desc">End-to-end UX for AI-powered giving analytics — from taxonomy and calculated fields up. Teaching an AI what church giving data means before designing how to surface it.</p>
-        <p class="work-metric">AWS QuickSight · Data taxonomy · Future vision</p>
+        <div class="work-body">
+          <h2 class="work-title">Giving analytics: making church data speak plainly</h2>
+          <p class="work-desc">End-to-end AI-powered analytics, from data taxonomy to surfaced insight.</p>
+          <p class="work-metric">AWS QuickSight · Data taxonomy · Future vision</p>
+        </div>
       </a>
 
     </div>
